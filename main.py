@@ -2,7 +2,6 @@ import os
 from flask import Flask, request, render_template, render_template_string, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
-#template_dir = os.path.abspath('/Users/robinreiners/Desktop/SCM Games')
 template_dir = os.path.abspath('./templates')
 
 

@@ -18,7 +18,8 @@
                     <button type="button" class="btn btn-outline-secondary mx-1" disabled>ROUND 4</button>
                     <button type="button" class="btn btn-outline-secondary mx-1" disabled>ROUND 5</button>
                     <button type="button" class="btn btn-outline-secondary mx-1" disabled>ROUND 6</button>
-                    <button type="button" class="btn btn-outline-secondary mx-1" disabled>ROUND 7</button>                    
+                    <button type="button" class="btn btn-outline-secondary mx-1" disabled>ROUND 7</button>   
+					<button type="button" class="btn btn-outline-secondary mx-1" disabled>ROUND 8</button> 
                 </ul>
                 <ul class="navbar-nav"> 
                     <button type="button" class="btn btn-outline-warning mx-1" href="/">Instructions</button> 
@@ -28,28 +29,64 @@
     </nav>
 
     <div class="container my-4">      
-        <h4 class="my-3 h3">You are the head of procurement and your task is to maximize tghe firm's profit!</h4>
+        <h4 class="my-3 h3">You are the head of procurement and your task is to maximize the firm's profit!</h4>
         <hr class="my-3">
         <img src="static/images/welcome.png" class="img-fluid" alt="Responsive image" width="100%">
         <hr class="my-3">
         <p class="font-weight-bold">Keep the following in mind:</p>
-            <li>1 test + 7 periods</li>
-            <li>Inventory is being transferred from one period to another.</li>
-            <li>If not indicated differently, there is no other connection between the periods or influence on one another.</li> 
-            <li>No backorders or backorder penalty cost, only lost sales occur when the shipped quantity is lower than demand. </li>
-            <li>1 local supplier US Productions with high production cost </li> 
-            <li>1 Far East supplier TW Productions with lower production cost </li>
-            <li>Your order will arrive at the end of the order period. You only have to pay for the products you receive in proper quality independent of what you have ordered. </li>
-            <li>The demand of each period will be covered from your inventory as far as possible.</li>
-            <li>An event can only happen or not happen (there is no in-between for scenarios) i.e. risk happens or not and will have an impact on your supply chain</li>
+            <p> <li>1 test + 7 periods</li>
+				<li>Inventory is being transferred from one period to another.</li>
+				<li>If not indicated differently, there is no other connection between the periods or influence on one another.</li> 
+				<li>No backorders or backorder penalty cost, only lost sales occur when the shipped quantity is lower than demand. </li>
+			</p>
+			<p>
+				<li>1 local supplier US Productions with high production cost </li> 
+				<li>1 Far East supplier TW Productions with lower production cost </li>
+			</p>
+			<p>
+				<li>Your order will arrive at the end of the order period. You only have to pay for the products you receive in proper quality independent of what you have ordered. </li>
+				<li>The demand of each period will be covered from your inventory as far as possible.</li>
+				<li>An event can only happen or not happen (there is no in-between for scenarios) i.e. risk happens or not and will have an impact on your supply chain</li>
+			</p>
             <hr class="my-3">
-            <h4 class="my-3 h3">Main task: Placing orders to fulfil demand (100% demand forecast accuracy) and maximize your profit</h4>
+            <h4 class="my-3 h3 text-primary">Main task: Placing orders to fulfil demand (100% demand forecast accuracy) and maximize your profit</h4>
 
     </div>
-    
+	
+	<div class="container pt-5 col-3 ">
+                    <table class="table table-striped ">
+                        <thead>
+							<tr>
+							  <th scope="col">Key data</th>
+							  <th scope="col">Price</th>
+							</tr>
+						</thead>
+                        <tbody>
+                            <tr>
+								<td>selling price</td>
+								<td>$ 200</td>
+                            </tr>
+							
+                            <tr>
+								<td>purchasing price at US Productions</td>
+								<td>$ 100</td>
+                            </tr>
+							
+                            <tr>                            
+								<td>purchasing price at TW Productions</td>
+								<td>$ 85</td>
+                            </tr>
 
-    <div class="container my-4">
-        <a href="/round1" class="btn btn-info" role="button">Got it!</a>   
+							<tr>                            
+								<td>inventory holding cost per period</td>
+								<td>$ 15</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+    
+	<div class="container d-md-flex pt-5 justify-content-md-end">
+        <a href="/round1" class="btn btn-primary btn-md"" role="button">Got it!</a>   
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>

@@ -1,0 +1,139 @@
+<!doctype html> 
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>SCM Risk Game</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid"> 
+            <a class="navbar-brand">
+                <img src="static/images/logistics.svg" width="30" height="30" alt="">
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <button type="button" class="btn btn-outline-secondary mx-1" disabled>PERIOD 1</button>
+                    <button type="button" class="btn btn-secondary mx-1" disabled>PERIOD 2</button>
+                    <button type="button" class="btn btn-outline-secondary mx-1" disabled>PERIOD 3</button>
+                    <button type="button" class="btn btn-outline-secondary mx-1" disabled>PERIOD 4</button>
+                    <button type="button" class="btn btn-outline-secondary mx-1" disabled>PERIOD 5</button>
+                    <button type="button" class="btn btn-outline-secondary mx-1" disabled>PERIOD 6</button>
+                    <button type="button" class="btn btn-outline-secondary mx-1" disabled>PERIOD 7</button>   
+					<button type="button" class="btn btn-outline-secondary mx-1" disabled>PERIOD 8</button> 					
+                </ul>
+                <ul class="navbar-nav"> 
+                    <button type="button" class="btn btn-outline-warning mx-1" href="/">Instructions</button> 
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+	<hr class="my-4 mt-5">
+        <div class="row">
+            <div class="col-7">
+                <div class="container pb-4">
+					<h2> <b> PERIOD 2 </b> </h2>
+					<p class="pt-2 fs-4"> Demand for Period 2: <b> 370 </b> </p>
+					
+					<div style ="text-align: justify;" class= "pb-5">
+						<p>  Hey, it’s your CEO again. Working with a new supplier is not always easy. My dear friend Maria who is COO of a company producing longboards has made this experience with <b>TW Productions </b>, too. One year ago, they started working together, and in the beginning, <b>delivering all the ordered products at a high-quality level was quite an issue.</b> </p>
+						
+						<p>  I do not know if this will happen to us, too, but I wanted to warn you before you place your orders unknowingly. In the end, at worst, <b> only parts of the order arrive </b> since the bad-quality skateboards are already sorted out in Taiwan and will not cost us anything. But, fingers crossed, it might also happen that everything works well and we <b>receive the ordered skateboards without any problems. </b> </p>
+						
+						<p> Luckily, this <b>problem only might occur in this period </b>, and we still have US Productions for 100% reliable production. </p>
+						
+						<hr> 
+											
+						<p> Buy plane tickets for a quality manager to fly to Taiwan to help the production workers improve production quality for $ 2,500. </p>
+						<button type="button" class="btn btn-primary d-grid col-6 mx-auto">Buy plane tickets for $ 2,500</button> 
+						
+						<p class="pt-3"> Negotiate new contract terms with TW Productions only for this period so that they pay half of our profit margin (= half of  $115) of not delivered parts for $ 2,000.</p>
+						<button type="button" class="btn btn-primary d-grid col-6 mx-auto">Negotiate new contract terms for $ 2,000</button>
+						
+						<p class="pt-3"> This time, you can purchase the risk analysis to help you estimate the probability of the risk.</p>
+						<button type="button" class="btn btn-primary d-grid col-6 mx-auto">Buy analysis for $ 4,500</button>
+					</div>
+					
+                    <form action="/round2/feedback/" method="post">
+						<p> <b> How much would you like to order from each supplier? </b> </p>
+                        <div class="row mb-3">
+                            <label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity US Productions</label>
+                            <div class = "col-7">
+								<input name ="order_quantities" type="text" class="form-control" id="formGroupExampleInput" placeholder="insert order quantity" >
+							</div>
+                        </div>
+						
+						<div class="row mb-3">
+                            <label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity TW Productions</label>
+                            <div class = "col-7">
+								<input name ="order_quantities" type="text" class="form-control" id="formGroupExampleInput" placeholder="insert order quantity" >
+							</div>
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex pt-3 pb-5 justify-content-md-end">
+							<button type="button" class="btn btn-secondary ">Calculate cost</button>
+                            <button type="submit" class="btn btn-primary">Submit orders</button>
+                        </div>
+                    </form>
+					
+					
+					
+                </div> 
+            </div>
+            <div class="col-5">
+                <div class="container pt-5">
+                    <table class="table table-striped ">
+                        
+                        <tbody>
+                            <tr>
+								<td>selling price</td>
+								<td>$ 200</td>
+                            </tr>
+							
+                            <tr>
+								<td>purchasing price at US Productions</td>
+								<td>$ 100</td>
+                            </tr>
+							
+                            <tr>                            
+								<td>purchasing price at TW Productions</td>
+								<td>$ 85</td>
+                            </tr>
+							
+							<tr>                            
+								<td>inventory holding cost per period</td>
+								<td>$ 15</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+				
+				<div class="container pt-5">
+					<b> <table class="table table-borderless">
+                        
+                       <tbody>
+                            <tr>
+								<td>current profit:</td>
+								<td> tbd </td>
+                            </tr>
+							
+							<tr>
+								<td>current inventory level:</td>
+								<td> tbd </td>
+                            </tr
+						</tbody>
+					</table> </b>
+				</div>
+            </div>
+        </div>
+        
+    </div>   
+    
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+
+

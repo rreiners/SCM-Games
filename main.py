@@ -2,10 +2,13 @@ import os
 from flask import Flask, request, render_template, render_template_string, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
-template_dir = os.path.abspath('/Users/robinreiners/Desktop/SCM Games')
+#template_dir = os.path.abspath('/Users/robinreiners/Desktop/SCM Games')
+template_dir = os.path.abspath('./templates')
+
 
 app = Flask(__name__, template_folder=template_dir)
 app.secret_key = 'games'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -29,7 +32,7 @@ def home():
     else:
         return render_template("home.html", content = "testing")
 
-@app.route('/round1', methods=['GET', 'POST'])
+@app.route('/round1/', methods=['GET', 'POST'])
 def round1():
 
     if request.method == 'POST':
@@ -46,7 +49,131 @@ def round1():
 
     return render_template("round1.html", value = result, content = "testing")
 
+@app.route('/round1/feedback/', methods=['GET', 'POST'])
+def round1_feedback():
+
+    if request.method == 'POST':
+        return render_template("round1_feedback.html", content = "testing")
+    else:
+        return render_template("round1_feedback.html", content = "testing")
+
+
+
+@app.route('/round2/', methods=['GET', 'POST'])
+def round2():
+
+    if request.method == 'POST':
+        return render_template("round2.html", content = "testing")
+    else:
+        return render_template("round2.html", content = "testing")
+
+@app.route('/round2/feedback/', methods=['GET', 'POST'])
+def round2_feedback():
+
+    if request.method == 'POST':
+        return render_template("round2_feedback.html", content = "testing")
+    else:
+        return render_template("round2_feedback.html", content = "testing")
+
+
+@app.route('/round3/', methods=['GET', 'POST'])
+def round3():
+
+    if request.method == 'POST':
+        return render_template("round3.html", content = "testing")
+    else:
+        return render_template("round3.html", content = "testing")
+
+@app.route('/round3/feedback/', methods=['GET', 'POST'])
+def round3_feedback():
+
+    if request.method == 'POST':
+        return render_template("round3_feedback.html", content = "testing")
+    else:
+        return render_template("round3_feedback.html", content = "testing")
+
+@app.route('/round4/', methods=['GET', 'POST'])
+def round4():
+
+    if request.method == 'POST':
+        return render_template("round4.html", content = "testing")
+    else:
+        return render_template("round4.html", content = "testing")
+
+@app.route('/round4/feedback/', methods=['GET', 'POST'])
+def round4_feedback():
+
+    if request.method == 'POST':
+        return render_template("round4_feedback.html", content = "testing")
+    else:
+        return render_template("round4_feedback.html", content = "testing")
+
+@app.route('/round5/', methods=['GET', 'POST'])
+def round5():
+
+    if request.method == 'POST':
+        return render_template("round5.html", content = "testing")
+    else:
+        return render_template("round5.html", content = "testing")
+
+@app.route('/round5/feedback/', methods=['GET', 'POST'])
+def round5_feedback():
+
+    if request.method == 'POST':
+        return render_template("round5_feedback.html", content = "testing")
+    else:
+        return render_template("round5_feedback.html", content = "testing")
+
+@app.route('/round6/', methods=['GET', 'POST'])
+def round6():
+
+    if request.method == 'POST':
+        return render_template("round6.html", content = "testing")
+    else:
+        return render_template("round6.html", content = "testing")
+
+@app.route('/round6/feedback/', methods=['GET', 'POST'])
+def round6_feedback():
+
+    if request.method == 'POST':
+        return render_template("round6_feedback.html", content = "testing")
+    else:
+        return render_template("round6_feedback.html", content = "testing")
+
+@app.route('/round7/', methods=['GET', 'POST'])
+def round7():
+
+    if request.method == 'POST':
+        return render_template("round7.html", content = "testing")
+    else:
+        return render_template("round7.html", content = "testing")
+
+@app.route('/round7/feedback/', methods=['GET', 'POST'])
+def round7_feedback():
+
+    if request.method == 'POST':
+        return render_template("round7_feedback.html", content = "testing")
+    else:
+        return render_template("round7_feedback.html", content = "testing")
+
+@app.route('/round8/', methods=['GET', 'POST'])
+def round8():
+
+    if request.method == 'POST':
+        return render_template("round8.html", content = "testing")
+    else:
+        return render_template("round8.html", content = "testing")
+
+@app.route('/round8/feedback/', methods=['GET', 'POST'])
+def round8_feedback():
+
+    if request.method == 'POST':
+        return render_template("round8_feedback.html", content = "testing")
+    else:
+        return render_template("round8_feedback.html", content = "testing")
 
 if __name__ == "__main__":
     db.create_all()
     app.run(debug=True)
+
+app.run()

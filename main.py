@@ -2,7 +2,7 @@ import os
 from flask import Flask, request, render_template, render_template_string, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
-template_dir = os.path.abspath('/Users/robinreiners/Desktop/SCM Games')
+template_dir = os.path.abspath('/Users/robinreiners/Documents/GitHub/SCM-Games/templates')
 
 app = Flask(__name__, template_folder=template_dir)
 app.secret_key = 'games'
@@ -35,16 +35,19 @@ def round1():
     if request.method == 'POST':
         order_1 = int(request.form['order_quantity_1'])
         order_2 = int(request.form['order_quantity_2'])
-
-        my_data = Data(order_1, order_2)
-        db.session.add(my_data)
-        db.session.commit()
-
         result = order_1 + order_2
+
+        if request.form['Button'] == 'Modal':
+            return render_template("round1.html", show_modal= 1, 
+            value=result, content = "testing")
+        else:
+            my_data = Data(order_1, order_2)
+            db.session.add(my_data)
+            db.session.commit()
     else:
         return render_template("round1.html", content = "testing")
 
-    return render_template("round1.html", value = result, content = "testing")
+    return render_template("round1.html", content = "testing")
 
 
 if __name__ == "__main__":

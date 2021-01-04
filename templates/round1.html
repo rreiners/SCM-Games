@@ -1,0 +1,125 @@
+<!doctype html> 
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>SCM Risk Game</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand">
+                <img src="static/images/logistics.svg" width="30" height="30" alt="">
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <button type="button" class="btn btn-secondary mx-1" disabled>ROUND 1</button>
+                    <button type="button" class="btn btn-outline-secondary mx-1" disabled>ROUND 2</button>
+                    <button type="button" class="btn btn-outline-secondary mx-1" disabled>ROUND 3</button>
+                    <button type="button" class="btn btn-outline-secondary mx-1" disabled>ROUND 4</button>
+                    <button type="button" class="btn btn-outline-secondary mx-1" disabled>ROUND 5</button>
+                    <button type="button" class="btn btn-outline-secondary mx-1" disabled>ROUND 6</button>
+                    <button type="button" class="btn btn-outline-secondary mx-1" disabled>ROUND 7</button>                    
+                </ul>
+                <ul class="navbar-nav"> 
+                    <button type="button" class="btn btn-outline-warning mx-1" href="/">Instructions</button> 
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto">
+        <div text>
+            <h2 class="my-5 h2"></h2>
+            <hr class="my-4">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="container">
+                    <form method="post">
+                    
+                        <div class="md-form form-group">
+                            <label for="formGroupExampleInput" class="form-label">order quantity foreign supplier</label>
+                            <input name ="order_quantity_1" type="text" class="form-control" id="formGroupExampleInput" placeholder="insert order quantity" >
+                            <p>
+                        </div>
+            
+                        <div class="md-form form-group ">
+                            <label for="formGroupExampleInput" class="form-label">order quantity local supplier</label>
+                            <input name ="order_quantity_2" type="text" class="form-control" id="formGroupExampleInput" placeholder="insert order quantity">
+                            <p>
+                        </div>
+                        
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-md">submit</button></p> 
+                        </div>
+            
+            
+                        <div class="alert alert-success" role="alert">
+                            {{ value }}
+                        </div>
+            
+                    </form>
+                </div> 
+            </div>
+            <div class="col">
+                <div class="container">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                1 of 3
+            </div>
+            <div class="col">
+                2 of 3
+            </div>
+            <div class="col">
+                3 of 3
+            </div>
+        </div>
+    </div>   
+    
+
+    <div class="container mx-auto">
+        
+             
+    </div>
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+
+

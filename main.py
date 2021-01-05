@@ -1,10 +1,7 @@
-import os 
 from flask import Flask, request, render_template, render_template_string, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 
-template_dir = os.path.abspath('./templates')
-
-app = Flask(__name__, template_folder=template_dir)
+app = Flask(__name__)
 app.secret_key = 'games'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

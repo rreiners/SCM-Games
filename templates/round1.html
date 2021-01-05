@@ -70,8 +70,12 @@
                                     var revenue=Math.min((field1+field2),453)*200
                                     var purchase=(field1*100)+(field2*85)
                                     var holding=Math.max((field1+field2-453),0)
+                                    var profit=revenue-purchase-holding
 
-                                    document.getElementById("answer").innerHTML="Revenue: "+revenue;
+                                    document.getElementById("revenue").innerHTML=revenue;
+                                    document.getElementById("purchase").innerHTML=purchase;
+                                    document.getElementById("holding").innerHTML=holding;
+                                    document.getElementById("profit").innerHTML=profit;
                                 }
                         </script>
 
@@ -84,12 +88,30 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="alert alert-success" role="alert">
-                                        <a id="answer">a</a>
+                                        <div class="row">
+                                            <div class="col-sm-5 col-md-6">Revenue: </div>
+                                            <div id="revenue" class="col-sm-5 offset-sm-2 col-md-6 offset-md-0"></div>
+                                          </div>
+                                          
+                                          <div class="row">
+                                            <div class="col-sm-6 col-md-5 col-lg-6">Purchase Cost:</div>
+                                            <div id="purchase" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                          </div>
+
+                                          <div class="row">
+                                            <div class="col-sm-6 col-md-5 col-lg-6">Holding Cost:</div>
+                                            <div id="holding" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                          </div>
+
+                                          <div class="row">
+                                            <div class="col-sm-6 col-md-5 col-lg-6">Profit:</div>
+                                            <div id="profit" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                          </div>
+                                          <!--<a id="answer">a</a>-->
                                     </div> 
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
                             </div>

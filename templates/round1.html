@@ -64,6 +64,10 @@
                         <script>
                             function calculate()
                                 {
+                                    var formatter = new Intl.NumberFormat('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',});
+
                                     var field1=parseFloat(document.getElementById("formGroupExampleInput1").value);
                                     var field2=parseFloat(document.getElementById("formGroupExampleInput2").value);
                                     
@@ -72,10 +76,10 @@
                                     var holding=Math.max((field1+field2-453),0)
                                     var profit=revenue-purchase-holding
 
-                                    document.getElementById("revenue").innerHTML=revenue;
-                                    document.getElementById("purchase").innerHTML=purchase;
-                                    document.getElementById("holding").innerHTML=holding;
-                                    document.getElementById("profit").innerHTML=profit;
+                                    document.getElementById("revenue").innerHTML=formatter.format(revenue);
+                                    document.getElementById("purchase").innerHTML=formatter.format(purchase);
+                                    document.getElementById("holding").innerHTML=formatter.format(holding);
+                                    document.getElementById("profit").innerHTML=formatter.format(profit);
                                 }
                         </script>
 

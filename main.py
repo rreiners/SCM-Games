@@ -65,7 +65,7 @@ def round1():
         
         return render_template("round1_feedback.html", content = "testing",
         order_US=order_US, order_TW=order_TW, recieve_US=recieve_US, recieve_TW=recieve_TW,
-        inventory=inventory, dem_cov=dem_cov, service_level=service_level, profit=profit)
+        inventory=inventory, dem_cov=dem_cov, service_level=service_level, profit=format(profit, ",.2f"))
     else:
         return render_template("round1.html", content = "testing")
 

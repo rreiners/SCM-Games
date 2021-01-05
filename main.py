@@ -45,13 +45,15 @@ def round1():
         order_TW = int(request.form['order_TW'])
         order_CHN = 0
         
-        recieve_US = order_1
+        recieve_US = order_US
         recieve_TW = round(order_TW*0.8)
         recieve_CHN = 0
 
-        inventory = min(0, 453 - order_US - order_TW)
+        inventory = max(0, recieve_US + recieve_TW - 453)
+        dem_cov = min(453, recieve_US + recieve_TW)
+        service_level = min(100,round(((recieve_US + recieve_TW)/453)*100))
         
-        revenue = min(order_US+order_TW, 0)*200
+        revenue = min(recieve_US+recieve_TW, 453)*200
         purchase = (order_US*100) + (order_TW*85)
         holding = inventory * 15
 
@@ -62,20 +64,10 @@ def round1():
         db.session.commit()
         
         return render_template("round1_feedback.html", content = "testing",
-        order_1=order_1, order_2=order_2, recieved_1=recieved_1, recieved_2=recieved_2,
-        inventory=inventory)
+        order_US=order_US, order_TW=order_TW, recieve_US=recieve_US, recieve_TW=recieve_TW,
+        inventory=inventory, dem_cov=dem_cov, service_level=service_level, profit=profit)
     else:
         return render_template("round1.html", content = "testing")
-
-
-
-"""@app.route('/round1/feedback/', methods=['GET', 'POST'])
-def round1_feedback():
-
-    if request.method == 'POST':
-        return render_template("round1_feedback.html", content = "testing")
-    else:
-        return render_template("round1_feedback.html", content = "testing")"""
 
 
 @app.route('/round2/', methods=['GET', 'POST'])
@@ -86,14 +78,6 @@ def round2():
     else:
         return render_template("round2.html", content = "testing")
 
-@app.route('/round2/feedback/', methods=['GET', 'POST'])
-def round2_feedback():
-
-    if request.method == 'POST':
-        return render_template("round2_feedback.html", content = "testing")
-    else:
-        return render_template("round2_feedback.html", content = "testing")
-
 
 @app.route('/round3/', methods=['GET', 'POST'])
 def round3():
@@ -103,13 +87,6 @@ def round3():
     else:
         return render_template("round3.html", content = "testing")
 
-@app.route('/round3/feedback/', methods=['GET', 'POST'])
-def round3_feedback():
-
-    if request.method == 'POST':
-        return render_template("round3_feedback.html", content = "testing")
-    else:
-        return render_template("round3_feedback.html", content = "testing")
 
 @app.route('/round4/', methods=['GET', 'POST'])
 def round4():
@@ -119,13 +96,6 @@ def round4():
     else:
         return render_template("round4.html", content = "testing")
 
-@app.route('/round4/feedback/', methods=['GET', 'POST'])
-def round4_feedback():
-
-    if request.method == 'POST':
-        return render_template("round4_feedback.html", content = "testing")
-    else:
-        return render_template("round4_feedback.html", content = "testing")
 
 @app.route('/round5/', methods=['GET', 'POST'])
 def round5():
@@ -135,13 +105,6 @@ def round5():
     else:
         return render_template("round5.html", content = "testing")
 
-@app.route('/round5/feedback/', methods=['GET', 'POST'])
-def round5_feedback():
-
-    if request.method == 'POST':
-        return render_template("round5_feedback.html", content = "testing")
-    else:
-        return render_template("round5_feedback.html", content = "testing")
 
 @app.route('/round6/', methods=['GET', 'POST'])
 def round6():
@@ -151,14 +114,6 @@ def round6():
     else:
         return render_template("round6.html", content = "testing")
 
-@app.route('/round6/feedback/', methods=['GET', 'POST'])
-def round6_feedback():
-
-    if request.method == 'POST':
-        return render_template("round6_feedback.html", content = "testing")
-    else:
-        return render_template("round6_feedback.html", content = "testing")
-
 @app.route('/round7/', methods=['GET', 'POST'])
 def round7():
 
@@ -167,13 +122,6 @@ def round7():
     else:
         return render_template("round7.html", content = "testing")
 
-@app.route('/round7/feedback/', methods=['GET', 'POST'])
-def round7_feedback():
-
-    if request.method == 'POST':
-        return render_template("round7_feedback.html", content = "testing")
-    else:
-        return render_template("round7_feedback.html", content = "testing")
 
 @app.route('/round8/', methods=['GET', 'POST'])
 def round8():
@@ -183,13 +131,6 @@ def round8():
     else:
         return render_template("round8.html", content = "testing")
 
-@app.route('/round8/feedback/', methods=['GET', 'POST'])
-def round8_feedback():
-
-    if request.method == 'POST':
-        return render_template("round8_feedback.html", content = "testing")
-    else:
-        return render_template("round8_feedback.html", content = "testing")
 
 if __name__ == "__main__":
     db.create_all()

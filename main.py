@@ -22,13 +22,10 @@ class Data(db.Model):
         self.quantity_2 = quantity_2
 
 
-@app.route('/', methods=['GET','POST'])
+@app.route('/')                
 def home():
-
-    if request.method == 'POST':
-        return redirect('/round1')
-    else:
-        return render_template("home.html", content = "testing")
+    
+    return render_template("home.html", content = "testing")
 
 @app.route('/round1/', methods=['GET', 'POST'])
 def round1():

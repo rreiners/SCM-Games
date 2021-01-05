@@ -62,26 +62,15 @@
                         </div>
                         
                         <script>
-                        function calculate()
-                        {
-                            var field1=document.getElementById("formGroupExampleInput1").value;
-                            var field2=document.getElementById("formGroupExampleInput2").value;
-                            var result=parseFloat(field1)+parseFloat(field2)
+                            function calculate()
+                                {
+                                    var field1=document.getElementById("formGroupExampleInput1").value;
+                                    var field2=document.getElementById("formGroupExampleInput2").value;
+                                    var result=parseFloat(field1)+parseFloat(field2)
 
-                            document.getElementById("answer").innerHTML=result;
-                        }
+                                    document.getElementById("answer").innerHTML=result;
+                                }
                         </script>
-                        <!-- Modal -->
-                        <!--
-                        {% with messages = get_flashed_messages() %}
-                        {% if messages %}
-                        {% for message in messages %}
-
-                        {{ message }}
-                        
-                        {% endfor %}
-                        {% endif %}
-                        {% endwith %} -->
 
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">

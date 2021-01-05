@@ -4,7 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 template_dir = os.path.abspath('./templates')
 
-
 app = Flask(__name__, template_folder=template_dir)
 app.secret_key = 'games'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
@@ -13,14 +12,25 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class Data(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    quantity_1 = db.Column(db.Integer)
-    quantity_2 = db.Column(db.Integer)
+    round_id = db.Column(db.Integer, primary_key=True)
+    order_US = db.Column(db.Integer)
+    order_TW = db.Column(db.Integer)
+    order_CHN = db.Column(db.Integer)
+    recieve_US = db.Column(db.Integer)
+    recieve_US = db.Column(db.Integer)
+    recieve_US = db.Column(db.Integer)
+    inventory = db.Column(db.Integer)
+    profit = db.Column(db.Integer)
 
-    def __init__(self, quantity_1, quantity_2):
-        self.quantity_1 = quantity_1
-        self.quantity_2 = quantity_2
-
+    def __init__(self, order_US, order_TW, order_CHN, recieve_US, recieve_TW, recieve_CHN, inventory, profit):
+        self.order_US = order_US
+        self.order_TW = order_TW
+        self.order_CHN = order_CHN
+        self.recieve_US = recieve_US
+        self.recieve_TW = recieve_TW
+        self.recieve_CHN = recieve_CHN
+        self.inventory = inventory
+        self.profit = profit
 
 @app.route('/')                
 def home():
@@ -31,31 +41,41 @@ def home():
 def round1():
 
     if request.method == 'POST':
-        order_1 = int(request.form['order_quantity_1'])
-        order_2 = int(request.form['order_quantity_2'])
-        result = order_1 + order_2
+        order_US = int(request.form['order_US'])
+        order_TW = int(request.form['order_TW'])
+        order_CHN = 0
+        
+        recieve_US = order_1
+        recieve_TW = round(order_TW*0.8)
+        recieve_CHN = 0
 
-        if request.form['Button'] == 'Modal':
-            flash(result)
-            return redirect(url_for('round1'))
-        else:
-            my_data = Data(order_1, order_2)
-            db.session.add(my_data)
-            db.session.commit()
-            return render_template("round1_feedback.html", 
-            order_1 = order_1, order_2 = order_2, value=result, content = "testing")
+        inventory = min(0, 453 - order_US - order_TW)
+        
+        revenue = min(order_US+order_TW, 0)*200
+        purchase = (order_US*100) + (order_TW*85)
+        holding = inventory * 15
+
+        profit = revenue - purchase - holding
+
+        my_data = Data(order_US, order_TW, order_CHN, recieve_US, recieve_TW, recieve_CHN, inventory, profit)
+        db.session.add(my_data)
+        db.session.commit()
+        
+        return render_template("round1_feedback.html", content = "testing",
+        order_1=order_1, order_2=order_2, recieved_1=recieved_1, recieved_2=recieved_2,
+        inventory=inventory)
     else:
         return render_template("round1.html", content = "testing")
 
 
 
-@app.route('/round1/feedback/', methods=['GET', 'POST'])
+"""@app.route('/round1/feedback/', methods=['GET', 'POST'])
 def round1_feedback():
 
     if request.method == 'POST':
         return render_template("round1_feedback.html", content = "testing")
     else:
-        return render_template("round1_feedback.html", content = "testing")
+        return render_template("round1_feedback.html", content = "testing")"""
 
 
 @app.route('/round2/', methods=['GET', 'POST'])

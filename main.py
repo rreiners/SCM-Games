@@ -39,7 +39,7 @@ def round1():
         result = order_1 + order_2
 
         if request.form['Button'] == 'Modal':
-            return render_template("round1.html", show_modal= 1, 
+            return render_template("round1".html", show_modal= 1, 
             value=result, content = "testing")
         else:
             my_data = Data(order_1, order_2)

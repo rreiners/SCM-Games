@@ -17,8 +17,8 @@ class Data(db.Model):
     order_TW = db.Column(db.Integer)
     order_CHN = db.Column(db.Integer)
     recieve_US = db.Column(db.Integer)
-    recieve_US = db.Column(db.Integer)
-    recieve_US = db.Column(db.Integer)
+    recieve_TW = db.Column(db.Integer)
+    recieve_CHN = db.Column(db.Integer)
     inventory = db.Column(db.Integer)
     profit = db.Column(db.Integer)
 

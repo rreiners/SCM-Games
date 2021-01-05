@@ -41,8 +41,8 @@ def home():
 def round1():
 
     if request.method == 'POST':
-        order_US = int(request.form['order_US'])
-        order_TW = int(request.form['order_TW'])
+        order_US = int(request.form['order_US'] or 0)
+        order_TW = int(request.form['order_TW'] or 0)
         order_CHN = 0
         
         recieve_US = order_US

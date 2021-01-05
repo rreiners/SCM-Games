@@ -68,12 +68,12 @@
                                         style: 'currency',
                                         currency: 'USD',});
 
-                                    var field1=parseFloat(document.getElementById("formGroupExampleInput1").value);
-                                    var field2=parseFloat(document.getElementById("formGroupExampleInput2").value);
+                                    var field1=parseFloat(document.getElementById("formGroupExampleInput1").value)|| 0;
+                                    var field2=parseFloat(document.getElementById("formGroupExampleInput2").value)|| 0;
                                     
                                     var revenue=Math.min((field1+field2),453)*200
                                     var purchase=(field1*100)+(field2*85)
-                                    var holding=Math.max((field1+field2-453),0)
+                                    var holding=Math.max((field1+field2-453),0)*15
                                     var profit=revenue-purchase-holding
 
                                     document.getElementById("revenue").innerHTML=formatter.format(revenue);

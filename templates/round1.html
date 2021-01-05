@@ -64,11 +64,14 @@
                         <script>
                             function calculate()
                                 {
-                                    var field1=document.getElementById("formGroupExampleInput1").value;
-                                    var field2=document.getElementById("formGroupExampleInput2").value;
-                                    var result=parseFloat(field1)+parseFloat(field2)
+                                    var field1=parseFloat(document.getElementById("formGroupExampleInput1").value);
+                                    var field2=parseFloat(document.getElementById("formGroupExampleInput2").value);
+                                    
+                                    var revenue=Math.min((field1+field2),453)*200
+                                    var purchase=(field1*100)+(field2*85)
+                                    var holding=Math.max((field1+field2-453),0)
 
-                                    document.getElementById("answer").innerHTML=result;
+                                    document.getElementById("answer").innerHTML="Revenue: "+revenue;
                                 }
                         </script>
 
@@ -80,9 +83,9 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="alert alert-success" role="alert">
+                                    <!--<div class="alert alert-success" role="alert">
                                         <p id="answer"></p>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -143,7 +146,37 @@
         
     </div>   
     
-   
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
 

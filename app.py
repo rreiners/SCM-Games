@@ -130,6 +130,9 @@ def round8():
         return render_template("round8.html", content = "testing")
 
 
-if __name__ == "__main__":
+with app.app_context():
     db.create_all()
+
+if __name__ == "__main__":
+    #db.create_all()
     app.run(debug=True, port=33507)

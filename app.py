@@ -2,8 +2,8 @@ from flask import Flask, request, render_template, render_template_string, redir
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-#app.secret_key = 'games'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
+app.secret_key = 'games'
+app.config['SQLALCHEMY_DATABASE_URL'] = 'sqlite:///users.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -132,5 +132,3 @@ def round8():
 if __name__ == "__main__":
     db.create_all()
     app.run(debug=True, port=33507)
-
-#app.run()

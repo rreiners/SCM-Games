@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.secret_key = '022fde4f6f0721b9ed817c5ae18edb54307600af64379f5120b5a1553f8bab52'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://xjezuiuthzzkax:e66256fb0f46249a929c24c9ad581ff139a192ffa376536e152f948061afdc9f@ec2-54-216-202-161.eu-west-1.compute.amazonaws.com:5432/dbgg781qn34tnm'
+app.config['SQLALCHEMY_DATABASE_URI'] =  'postgres://xjezuiuthzzkax:e66256fb0f46249a929c24c9ad581ff139a192ffa376536e152f948061afdc9f@ec2-54-216-202-161.eu-west-1.compute.amazonaws.com:5432/dbgg781qn34tnm' #'sqlite:///users.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
@@ -74,7 +74,9 @@ def round2():
     if request.method == 'POST':
         return render_template("round2.html", content = "testing")
     else:
-        return render_template("round2.html", content = "testing")
+        profit_r1 = Data.query.all()
+        return render_template("round2.html", content = "testing", 
+        profit_r1 = profit_r1, inventory_r1 = 100)
 
 
 @app.route('/round3/', methods=['GET', 'POST'])

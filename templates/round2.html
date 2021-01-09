@@ -24,9 +24,6 @@
 					<button type="button" class="btn btn-outline-secondary mx-1" disabled>PERIOD 8</button>
 					<button type="button" class="btn btn-outline-secondary mx-1" disabled>RESULT</button>
                 </ul>
-                <!--<ul class="navbar-nav"> 
-                    <button type="button" class="btn btn-outline-warning mx-1" href="/">Instructions</button> 
-                </ul>-->
             </div>
         </div>
     </nav>
@@ -39,50 +36,139 @@
 					<h2> <b> PERIOD 2 </b> </h2>
 					<p class="pt-5 fs-4"> Demand for Period 2: <b> 370 </b> </p>
 					
-					<div style ="text-align: justify;" class= "pb-3">
+                    <div style ="text-align: justify;" class= "pb-3">
+                        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+                        <script> $(function () {
+                            $('.btn-check').click(function(e) {
+                              $('.btn-check').not(this).prop('checked', false);
+                            });
+                          });
+                        </script>
+
 						<p>  Hey, it’s your CEO again. Working with a new supplier is not always easy. My dear friend Maria who is COO of a company producing longboards has made this experience with <b>TW Productions </b>, too. One year ago, they started working together, and in the beginning, <b>delivering all the ordered products at a high-quality level was quite an issue.</b> </p>
-						
 						<p>  I do not know if this will happen to us, too, but I wanted to warn you before you place your orders unknowingly. In the end, at worst, <b> only parts of the order arrive </b> since the bad-quality skateboards are already sorted out in Taiwan and will not cost us anything. But, fingers crossed, it might also happen that everything works well and we <b>receive the ordered skateboards without any problems. </b> </p>
-						
 						<p class= "pb-3"> Luckily, this <b>problem only might occur in this period </b>, and we still have US Productions for 100% reliable production. </p>
 						
 						<hr> 
 											
-						<p "> Buy plane tickets for a quality manager to fly to Taiwan to help the production workers improve production quality for $ 2,500. </p>
-						<button type="button" class="btn btn-primary d-grid col-6 mx-auto">Buy plane tickets for $ 2,500</button> 
-						
+						<p class="pt-5"> Buy plane tickets for a quality manager to fly to Taiwan to help the production workers improve production quality for $ 2,500. </p>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <input type="checkbox" class="btn-check" name="options" id="option1" value="2500" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="option1">Buy plane tickets for $ 2,500</label>    
+                        </div>
+                        
 						<p class="pt-5"> Negotiate new contract terms with TW Productions only for this period so that they pay half of our profit margin (= half of  $115) of not delivered parts for $ 2,000.</p>
-						<button type="button" class="btn btn-primary d-grid col-6 mx-auto">Negotiate new contract terms for $ 2,000</button>
+						<div class="d-grid gap-2 col-6 mx-auto">
+                            <input type="checkbox" class="btn-check" name="options" id="option2" value="2000" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="option2">Negotiate new contract terms for $ 2,000</label>
+                        </div>
 						
 						<p class="pt-5"> This time, you can purchase the risk analysis to help you estimate the probability of the risk.</p>
-						<button type="button" class="btn btn-primary d-grid col-6 mx-auto">Buy analysis for $ 4,500</button>
-					</div>
-					<hr>
-					
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <input type="checkbox" class="btn-check" name="options" id="option3" value="4500" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="option3">Buy analysis for $ 4,500</label>
+                        </div>
+                    </div>
+                    <hr>
+                    
                     <form action="/round2/feedback/" method="post">
 						<p> <b> How much would you like to order from each supplier? </b> </p>
                         <div class="row mb-3">
                             <label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity US Productions</label>
                             <div class = "col-7">
-								<input name ="order_quantities" type="text" class="form-control" id="formGroupExampleInput" placeholder="insert order quantity" >
+								<input name ="order_quantities" type="text" class="form-control" id="formGroupExampleInput1" placeholder="insert order quantity" >
 							</div>
                         </div>
 						
 						<div class="row mb-3">
                             <label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity TW Productions</label>
                             <div class = "col-7">
-								<input name ="order_quantities" type="text" class="form-control" id="formGroupExampleInput" placeholder="insert order quantity" >
+								<input name ="order_quantities" type="text" class="form-control" id="formGroupExampleInput2" placeholder="insert order quantity" >
 							</div>
                         </div>
                         
                         <div class="d-grid gap-2 d-md-flex pt-3 pb-5 justify-content-md-end">
-							<button type="button" class="btn btn-secondary mx-1">Calculate cost</button>
+							<button onclick="calculate()" type="button" name="Button" value="Modal" class="btn btn-secondary mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Calculate cost</button>
                             <button type="submit" class="btn btn-primary mx-1">Submit orders</button>
                         </div>
+                        
+                        <script>
+                            function calculate()
+                                {
+                                    var formatter = new Intl.NumberFormat('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',});
+
+                                    var field1=parseFloat(document.getElementById("formGroupExampleInput1").value)|| 0;
+                                    var field2=parseFloat(document.getElementById("formGroupExampleInput2").value)|| 0;
+                                    
+                                    var reaction = null; 
+                                    var inputElements = document.getElementsByClassName('btn-check');
+                                    for(var i=0; inputElements[i]; ++i){
+                                        if(inputElements[i].checked){
+                                            reaction = inputElements[i].value;
+                                            break;
+                                        }
+                                    }
+                                    
+                                    
+                                    var revenue=Math.min((field1+field2),370)*200
+                                    var purchase=(field1*100)+(field2*85)
+                                    var holding=Math.max((field1+field2-370),0)*15
+                                    var profit=revenue-purchase-holding-reaction
+
+                                    document.getElementById("revenue").innerHTML=formatter.format(revenue);
+                                    document.getElementById("purchase").innerHTML=formatter.format(purchase);
+                                    document.getElementById("holding").innerHTML=formatter.format(holding);
+                                    document.getElementById("profit").innerHTML=formatter.format(profit);
+                                    document.getElementById("reaction").innerHTML=formatter.format(reaction);
+                                }
+                        </script>
+                        
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Cost Calculation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="alert alert-success" role="alert">
+                                        <div class="row">
+                                            <div class="col-sm-5 col-md-6">Revenue: </div>
+                                            <div id="revenue" class="col-sm-5 offset-sm-2 col-md-6 offset-md-0"></div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                            <div class="col-sm-6 col-md-5 col-lg-6">Purchase Cost:</div>
+                                            <div id="purchase" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                            </div>
+
+                                            <div class="row">
+                                            <div class="col-sm-6 col-md-5 col-lg-6">Holding Cost:</div>
+                                            <div id="holding" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                            </div>
+
+                                            <div class="row">
+                                            <div class="col-sm-6 col-md-5 col-lg-6">Raction Cost:</div>
+                                            <div id="reaction" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                            </div>
+
+                                            <div class="row">
+                                            <div class="col-sm-6 col-md-5 col-lg-6">Profit:</div>
+                                            <div id="profit" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                            </div>                                        
+                                    </div> 
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div> 
+
                     </form>
-					
-					
-					
                 </div> 
             </div>
 			
@@ -123,39 +209,19 @@
                        <tbody>
                             <tr>
 								<td>current profit:</td>
-								<td> tbd </td>
+								<td>${{ profit_r1 }}</td>
                             </tr>
 							
 							<tr>
 								<td>current inventory level:</td>
-								<td> tbd </td>
+								<td>{{ inventory_r1 }}</td>
                             </tr
 						</tbody>
 					</table> </b>
 				</div>
             </div>
         </div>
-        
     </div>   
-
-    <div id="box" class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading" id="ph">
-                <h3 class="panel-title">Title</h3>
-            </div>
-            <div class="panel-body">
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="anynum" id="anynum">Any number
-                    </label>
-                    <label>
-                        <input type="radio" name="anynum" id="issuenum">Issue number
-                    </label>
-                </div>
-                <button class="btn btn-success" onclick="">Apply</button>
-            </div>
-        </div>
-    
    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>

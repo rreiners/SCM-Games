@@ -1,9 +1,13 @@
 from flask import Flask, request, render_template, render_template_string, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 
+## Notiz an Jana: wenn du an den HTML ansichten auf einem localen Server arbeiten möchtest, dann musst du 
+## den app.secret_key auskommentieren und den string 'postgres://xjezuiuthzzkax:e66256fb0f46249a929c24c9ad581ff139a192ffa376536e152f948061afdc9f@ec2-54-216-202-161.eu-west-1.compute.amazonaws.com:5432/dbgg781qn34tnm'
+## auskommentieren und mit 'sqlite:///users.sqlite3' ersetzten 
+
 app = Flask(__name__)
 app.secret_key = '022fde4f6f0721b9ed817c5ae18edb54307600af64379f5120b5a1553f8bab52'
-app.config['SQLALCHEMY_DATABASE_URI'] =  'postgres://xjezuiuthzzkax:e66256fb0f46249a929c24c9ad581ff139a192ffa376536e152f948061afdc9f@ec2-54-216-202-161.eu-west-1.compute.amazonaws.com:5432/dbgg781qn34tnm' #'sqlite:///users.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://xjezuiuthzzkax:e66256fb0f46249a929c24c9ad581ff139a192ffa376536e152f948061afdc9f@ec2-54-216-202-161.eu-west-1.compute.amazonaws.com:5432/dbgg781qn34tnm' #'sqlite:///users.sqlite3' 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 

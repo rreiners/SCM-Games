@@ -7,7 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.secret_key = '022fde4f6f0721b9ed817c5ae18edb54307600af64379f5120b5a1553f8bab52'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://xjezuiuthzzkax:e66256fb0f46249a929c24c9ad581ff139a192ffa376536e152f948061afdc9f@ec2-54-216-202-161.eu-west-1.compute.amazonaws.com:5432/dbgg781qn34tnm' #sqlite:///users.sqlite3' #
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3' #'postgres://xjezuiuthzzkax:e66256fb0f46249a929c24c9ad581ff139a192ffa376536e152f948061afdc9f@ec2-54-216-202-161.eu-west-1.compute.amazonaws.com:5432/dbgg781qn34tnm' #
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
@@ -61,8 +61,15 @@ def round1():
 
         profit = revenue - purchase - holding
 
-        my_data = Data(order_US, order_TW, order_CHN, recieve_US, recieve_TW, recieve_CHN, inventory, profit)
-        db.session.add(my_data)
+        my_data = Data.query.get(1)
+        my_data.order_US = order_US
+        my_data.order_TW = order_TW
+        my_data.order_CHN = order_CHN
+        my_data.recieve_US = recieve_US
+        my_data.recieve_TW = recieve_TW
+        my_data.recieve_CHN = recieve_CHN
+        my_data.inventory = inventory
+        my_data.profit = profit
         db.session.commit()
         
         return render_template("round1_feedback.html", content = "testing",
@@ -78,11 +85,14 @@ def round2():
     if request.method == 'POST':
         return render_template("round2.html", content = "testing")
     else:
-        profit_r1 = db.session.query(Data.profit).filter_by(round_id = 1).first()
-        
-        
+        dictionary1 = db.session.query(Data.profit).filter_by(round_id = 1).first()._asdict()
+        dictionary2 = db.session.query(Data.inventory).filter_by(round_id = 1).first()._asdict()
+
+        profit_r1 = dictionary1.get("profit", "")
+        inventory_r1 = dictionary2.get("inventory", "")
+
         return render_template("round2.html", content = "testing", 
-        profit_r1 = profit_r1, inventory_r1 = 100)
+        profit_r1 = format(profit_r1, ",.2f"), inventory_r1 = inventory_r1)
 
 
 @app.route('/round3/', methods=['GET', 'POST'])

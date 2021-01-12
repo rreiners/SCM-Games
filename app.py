@@ -7,13 +7,13 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.secret_key = '022fde4f6f0721b9ed817c5ae18edb54307600af64379f5120b5a1553f8bab52'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://xjezuiuthzzkax:e66256fb0f46249a929c24c9ad581ff139a192ffa376536e152f948061afdc9f@ec2-54-216-202-161.eu-west-1.compute.amazonaws.com:5432/dbgg781qn34tnm'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'#'postgres://xjezuiuthzzkax:e66256fb0f46249a929c24c9ad581ff139a192ffa376536e152f948061afdc9f@ec2-54-216-202-161.eu-west-1.compute.amazonaws.com:5432/dbgg781qn34tnm'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
 class Data(db.Model):
-    round_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, Sequence('id_seq', start=1, increment=1), primary_key=True)
     order_US = db.Column(db.Integer)
     order_TW = db.Column(db.Integer)
     order_CHN = db.Column(db.Integer)
@@ -50,9 +50,12 @@ def round1():
 
     db.session.query(Data).delete()
     db.session.commit()
+    
+    db.session.execute("ALTER SEQUENCE id_seq RESTART WITH 1")
+    db.session.commit()
 
     for i in range(1,10):
-        z = Data(0,0,0,0,0,0,0,0,0,0,0,0)
+        z = Data(round_id =1,0,0,0,0,0,0,0,0,0,0,0,0)
         db.session.add(z)
         db.session.commit()
 

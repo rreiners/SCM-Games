@@ -43,10 +43,7 @@ class Data(db.Model):
 
 @app.route('/')                
 def home():
-    for i in range(1,11):
-        z = Data(0,0,0,0,0,0,0,0,0,0,0,0)
-        db.session.add(z)
-        db.session.commit()
+ 
     return render_template("home.html", content = "testing")
 
 @app.route('/round1/', methods=['GET', 'POST'])

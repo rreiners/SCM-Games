@@ -95,7 +95,7 @@ def round2():
         
         
         return render_template("round2.html", content = "testing", 
-        profit_r1 = format(profit, ",.2f"), inventory_r1 = inventory)
+        profit_r1 = profit, inventory_r1 = inventory)
 
 
 @app.route('/round3/', methods=['GET', 'POST'])

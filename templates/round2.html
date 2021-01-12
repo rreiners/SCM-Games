@@ -139,90 +139,89 @@
 							<button onclick="calculate()" type="button" name="Button" value="Modal" class="btn btn-secondary mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Calculate cost</button>
                             <button type="submit" class="btn btn-primary mx-1">Submit orders</button>
                         </div>
-                        
-                        <script>
-
-                            function calculate()
-                                {
-                                    var formatter = new Intl.NumberFormat('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',});
-
-                                    var field1=parseFloat(document.getElementById("formGroupExampleInput1").value)|| 0;
-                                    var field2=parseFloat(document.getElementById("formGroupExampleInput2").value)|| 0;
-                                    
-                                    var reaction = null; 
-                                    var inputElements = document.getElementsByClassName('btn-check');
-                                    for(var i=0; inputElements[i]; ++i){
-                                        if(inputElements[i].checked){
-                                            reaction = inputElements[i].value;
-                                            break;
-                                        }
-                                    }
-                                    
-                                    var revenue=Math.min((field1+field2),370)*200
-                                    var purchase=(field1*100)+(field2*85)
-                                    var holding=Math.max((field1+field2-370),0)*15
-                                    var profit=revenue-purchase-holding-reaction
-
-                                    document.getElementById("revenue").innerHTML=formatter.format(revenue);
-                                    document.getElementById("purchase").innerHTML=formatter.format(purchase);
-                                    document.getElementById("holding").innerHTML=formatter.format(holding);
-                                    document.getElementById("profit").innerHTML=formatter.format(profit);
-                                    document.getElementById("reaction").innerHTML=formatter.format(reaction);
-                                }
-                        </script>
-                        
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Cost Calculation</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="alert alert-success" role="alert">
-                                            <p> 
-											<div class="row">
-                                            <div >Expected values if risk does not occur! </div>
-                                            <div id="title" ></div>
-											</div>
-											</p>
-																					
-											<div class="row">
-											<div class="col-sm-5 col-md-6">Revenue: </div>
-                                            <div id="revenue" class="col-sm-5 offset-sm-2 col-md-6 offset-md-0"></div>
-                                            </div>
-                                            
-                                            <div class="row">
-                                            <div class="col-sm-6 col-md-5 col-lg-6">Purchase Cost:</div>
-                                            <div id="purchase" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
-                                            </div>
-
-                                            <div class="row">
-                                            <div class="col-sm-6 col-md-5 col-lg-6">Holding Cost:</div>
-                                            <div id="holding" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
-                                            </div>
-
-                                            <div class="row">
-                                            <div class="col-sm-6 col-md-5 col-lg-6">Reaction Cost:</div>
-                                            <div id="reaction" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
-                                            </div>
-
-                                            <div class="row">
-                                            <div class="col-sm-6 col-md-5 col-lg-6">Profit:</div>
-                                            <div id="profit" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
-                                            </div>                                        
-                                    </div> 
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                            </div>
-                        </div> 
-
                     </form>
+                        
+                    <script>
+
+                        function calculate()
+                            {
+                                var formatter = new Intl.NumberFormat('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',});
+
+                                var field1=parseFloat(document.getElementById("formGroupExampleInput1").value)|| 0;
+                                var field2=parseFloat(document.getElementById("formGroupExampleInput2").value)|| 0;
+                                
+                                var reaction = null; 
+                                var inputElements = document.getElementsByClassName('btn-check');
+                                for(var i=0; inputElements[i]; ++i){
+                                    if(inputElements[i].checked){
+                                        reaction = inputElements[i].value;
+                                        break;
+                                    }
+                                }
+                                
+                                var revenue=Math.min((field1+field2),370)*200
+                                var purchase=(field1*100)+(field2*85)
+                                var holding=Math.max((field1+field2-370),0)*15
+                                var profit=revenue-purchase-holding-reaction
+
+                                document.getElementById("revenue").innerHTML=formatter.format(revenue);
+                                document.getElementById("purchase").innerHTML=formatter.format(purchase);
+                                document.getElementById("holding").innerHTML=formatter.format(holding);
+                                document.getElementById("profit").innerHTML=formatter.format(profit);
+                                document.getElementById("reaction").innerHTML=formatter.format(reaction);
+                            }
+                    </script>
+                    
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Cost Calculation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="alert alert-success" role="alert">
+                                        <p> 
+                                        <div class="row">
+                                        <div >Expected values if risk does not occur! </div>
+                                        <div id="title" ></div>
+                                        </div>
+                                        </p>
+                                                                                
+                                        <div class="row">
+                                        <div class="col-sm-5 col-md-6">Revenue: </div>
+                                        <div id="revenue" class="col-sm-5 offset-sm-2 col-md-6 offset-md-0"></div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">Purchase Cost:</div>
+                                        <div id="purchase" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                        </div>
+
+                                        <div class="row">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">Holding Cost:</div>
+                                        <div id="holding" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                        </div>
+
+                                        <div class="row">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">Reaction Cost:</div>
+                                        <div id="reaction" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                        </div>
+
+                                        <div class="row">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">Profit:</div>
+                                        <div id="profit" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                        </div>                                        
+                                </div> 
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div> 
                 </div> 
             </div>
 			

@@ -7,13 +7,13 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.secret_key = '022fde4f6f0721b9ed817c5ae18edb54307600af64379f5120b5a1553f8bab52'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'#'postgres://xjezuiuthzzkax:e66256fb0f46249a929c24c9ad581ff139a192ffa376536e152f948061afdc9f@ec2-54-216-202-161.eu-west-1.compute.amazonaws.com:5432/dbgg781qn34tnm'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://xjezuiuthzzkax:e66256fb0f46249a929c24c9ad581ff139a192ffa376536e152f948061afdc9f@ec2-54-216-202-161.eu-west-1.compute.amazonaws.com:5432/dbgg781qn34tnm'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
 class Data(db.Model):
-    id = db.Column(db.Integer, Sequence('id_seq', start=1, increment=1), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     order_US = db.Column(db.Integer)
     order_TW = db.Column(db.Integer)
     order_CHN = db.Column(db.Integer)
@@ -43,20 +43,29 @@ class Data(db.Model):
 
 @app.route('/')                
 def home():
+    for i in range(1,11):
+        z = Data(0,0,0,0,0,0,0,0,0,0,0,0)
+        db.session.add(z)
+        db.session.commit()
     return render_template("home.html", content = "testing")
 
 @app.route('/round1/', methods=['GET', 'POST'])
 def round1():
 
-    db.session.query(Data).delete()
-    db.session.commit()
-    
-    db.session.execute("ALTER SEQUENCE id_seq RESTART WITH 1")
-    db.session.commit()
-
-    for i in range(1,10):
-        z = Data(0,0,0,0,0,0,0,0,0,0,0,0)
-        db.session.add(z)
+    for i in range(1,11):    
+        my_data = Data.query.get(i)
+        my_data.order_US = 0
+        my_data.order_TW = 0
+        my_data.order_CHN = 0
+        my_data.recieve_US = 0
+        my_data.recieve_TW = 0
+        my_data.recieve_CHN = 0
+        my_data.analysis = 0
+        my_data.measure1 = 0
+        my_data.measure2 = 0
+        my_data.measure3 = 0
+        my_data.inventory = 0
+        my_data.profit = 0
         db.session.commit()
 
     if request.method == 'POST':
@@ -102,8 +111,8 @@ def round2():
     if request.method == 'POST':
 
         # get inventory and profit from database
-        query_profit = db.session.query(Data.profit).filter_by(round_id = 1).first()._asdict()
-        query_inventory = db.session.query(Data.inventory).filter_by(round_id = 1).first()._asdict()
+        query_profit = db.session.query(Data.profit).filter_by(id = 1).first()._asdict()
+        query_inventory = db.session.query(Data.inventory).filter_by(id = 1).first()._asdict()
         profit_r1 = int(query_profit.get("profit"))
         inventory_r1 = int(query_inventory.get("inventory"))
         
@@ -166,8 +175,8 @@ def round2():
         order_US=order_US, order_TW=order_TW, recieve_US=recieve_US, recieve_TW=recieve_TW, compensation=format(compensation, ",.2f"),
         inventory=inventory, dem_cov=dem_cov, service_level=service_level, profit=format(profit, ",.2f"), total_profit=format(total_profit, ",.2f"))
     else:
-        query_profit = db.session.query(Data.profit).filter_by(round_id = 1).first()._asdict()
-        query_inventory = db.session.query(Data.inventory).filter_by(round_id = 1).first()._asdict()
+        query_profit = db.session.query(Data.profit).filter_by(id = 1).first()._asdict()
+        query_inventory = db.session.query(Data.inventory).filter_by(id = 1).first()._asdict()
         profit_r1 = query_profit.get("profit")
         inventory_r1 = query_inventory.get("inventory")
         
@@ -230,6 +239,7 @@ def round8():
 
 with app.app_context():
     db.create_all()
+
 
 if __name__ == "__main__":
     #db.create_all()

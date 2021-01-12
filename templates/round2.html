@@ -1,12 +1,14 @@
 <!doctype html> 
 <html>
 <head>
+    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
     <title>SCM Risk Game</title>
 </head>
 
-<body>
+<body onload="myFunction()">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid"> 
             <a class="navbar-brand">
@@ -65,19 +67,41 @@
 									Are you sure you want to buy the analysis for $8,000?
 								  </div>
 								  <div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                    <button onclick="calculate()" type="button" name="Button" value="Modal" class="btn btn-secondary mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Calculate cost</button>
+                                    <script>
+                                        function updateProfit(){
+                                            var formatter = new Intl.NumberFormat('en-US', {
+                                                style: 'currency',
+                                                currency: 'USD',});
+                                            var profit_r1=parseFloat("{{ profit_r1 }}") - 8000;
+                                            document.getElementById("profit_r1").innerHTML=formatter.format(profit_r1);}
+                                    </script>
                                     
-                                    <!--<button type="button" class="btn btn-primary">Buy</button>-->
-								  </div>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button onclick="updateProfit()" type="button" name="Button" value="Modal" class="btn btn-primary mx-1" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#analysisModal">Show Analysis</button>
+                                  </div>
 								</div>
 							  </div>
 							</div>
-						</div>
-							
-							<hr>
-						
-										
+                        </div>
+                        
+                        <div class="modal fade" id="analysisModal" tabindex="-1" aria-labelledby="analysisModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Risk Analysis</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        
+                        <hr>
+								
 						<p class="pt-2"> Buy plane tickets for a small team of quality managers to fly to Taiwan to help the production workers improve production quality. Travel expenses sum up to $ 13,500. </p>
 
                         <div class="d-grid gap-2 col-6 mx-auto">
@@ -235,15 +259,30 @@
 				
 				<div class="container pt-5">
 					<b> 
+                        <script>
+                            function myFunction() 
+                                {
+                                    var formatter = new Intl.NumberFormat('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',});
+
+                                    var profit_r1 = "{{ profit_r1 }}";
+                                    var inventory_r1 = "{{ inventory_r1 }}";
+                                    
+                                    document.getElementById("profit_r1").innerHTML=formatter.format(profit_r1);
+                                    document.getElementById("inventory_r1").innerHTML=inventory_r1;
+                                }
+                        </script>
+
                         <table class="table table-borderless">
                             <tbody>
                                 <tr>
                                     <td>Current profit:</td>
-                                    <td>$ {{ profit_r1 }}</td>
+                                    <td><span id="profit_r1"></span></td>
                                 </tr>
                                 <tr>
                                     <td>Current inventory level:</td>
-                                    <td>{{ inventory_r1 }}</td>
+                                    <td><span id="inventory_r1"></span></td>
                                 </tr>
                             </tbody>
                         </table> 

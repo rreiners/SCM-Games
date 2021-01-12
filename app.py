@@ -7,7 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.secret_key = '022fde4f6f0721b9ed817c5ae18edb54307600af64379f5120b5a1553f8bab52'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'#'postgres://xjezuiuthzzkax:e66256fb0f46249a929c24c9ad581ff139a192ffa376536e152f948061afdc9f@ec2-54-216-202-161.eu-west-1.compute.amazonaws.com:5432/dbgg781qn34tnm' #sqlite:///users.sqlite3' #
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://xjezuiuthzzkax:e66256fb0f46249a929c24c9ad581ff139a192ffa376536e152f948061afdc9f@ec2-54-216-202-161.eu-west-1.compute.amazonaws.com:5432/dbgg781qn34tnm' #sqlite:///users.sqlite3' #
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
@@ -43,26 +43,25 @@ def home():
 def round1():
 
     if request.method == 'POST':
+        # get input values from inputform 
         order_US = int(request.form['order_US'] or 0)
         order_TW = int(request.form['order_TW'] or 0)
         order_CHN = 0
         
+        # calculate whats happening 
         recieve_US = order_US
         recieve_TW = round(order_TW*0.8)
         recieve_CHN = 0
-
         inventory = max(0, recieve_US + recieve_TW - 453)
         dem_cov = min(453, recieve_US + recieve_TW)
         service_level = min(100,round(((recieve_US + recieve_TW)/453)*100))
-        
         revenue = min(recieve_US+recieve_TW, 453)*200
         purchase = (order_US*100) + (order_TW*85)
         holding = inventory * 15
-
         profit = revenue - purchase - holding
 
+        # access Database row 1 and update Database
         my_data = Data.query.get(1)
-
         my_data.order_US = order_US
         my_data.order_TW = order_TW
         my_data.order_CHN = order_CHN
@@ -71,8 +70,6 @@ def round1():
         my_data.recieve_CHN = recieve_CHN
         my_data.inventory = inventory
         my_data.profit = profit
-        #my_data = Data(order_US, order_TW, order_CHN, recieve_US, recieve_TW, recieve_CHN, inventory, profit)
-        #db.session.add(my_data)
         db.session.commit()
         
         return render_template("round1_feedback.html", content = "testing",
@@ -86,13 +83,12 @@ def round1():
 def round2():
 
     if request.method == 'POST':
-        return render_template("round2.html", content = "testing")
+        return render_template("round2_feedback.html", content = "testing")
     else:
         query_profit = db.session.query(Data.profit).filter_by(round_id = 1).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(round_id = 1).first()._asdict()
         profit = query_profit.get("profit")
         inventory = query_inventory.get("inventory")
-        
         
         return render_template("round2.html", content = "testing", 
         profit_r1 = profit, inventory_r1 = inventory)

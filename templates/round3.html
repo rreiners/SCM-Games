@@ -6,7 +6,7 @@
     <title>SCM Risk Game</title>
 </head>
 
-<body>
+<body onload="myFunction()">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid"> 
             <a class="navbar-brand">
@@ -183,21 +183,36 @@
                     </table>
                 </div>
 				
-				<div class="container pt-5">
-					<b> <table class="table table-borderless">
-                        
-                       <tbody>
-                            <tr>
-								<td>Current profit:</td>
-								<td> tbd </td>
-                            </tr>
-							
-							<tr>
-								<td>Current inventory level:</td>
-								<td> tbd </td>
-                            </tr
-						</tbody>
-					</table> </b>
+                <div class="container pt-5">
+					<b> 
+                        <script>
+                            function myFunction() 
+                                {
+                                    var formatter = new Intl.NumberFormat('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',});
+
+                                    var profit_r1 = "{{ profit_r2 }}";
+                                    var inventory_r1 = "{{ inventory_r2 }}";
+                                    
+                                    document.getElementById("profit_r2").innerHTML=formatter.format(profit_r1);
+                                    document.getElementById("inventory_r2").innerHTML=inventory_r1;
+                                }
+                        </script>
+
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>Current profit:</td>
+                                    <td><span id="profit_r2"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Current inventory level:</td>
+                                    <td><span id="inventory_r2"></span></td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                    </b>
 				</div>
             </div>
         </div>

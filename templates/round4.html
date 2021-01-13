@@ -41,10 +41,59 @@
 						<p class= "pb-3"> You might want to consider taking this into account when placing your orders for the next periods. </p>
 						
 						<hr> 
-						
-						<p class="pt-1"> You can purchase the risk analysis to help you estimate the probability of the risk.</p>
-						<button type="button" class="btn btn-primary d-grid col-6 mx-auto">Buy analysis for $ 8,000</button>
-					</div>
+						<div class="pb-3">
+							<p class="pt-2"> This time, you can purchase the risk analysis to help you estimate the probability of the risk.</p>
+							<button type="button" class="btn btn-outline-secondary d-grid gap-2 col-6 mx-auto" data-bs-toggle="modal" data-bs-target="#confirmModal">
+								Buy analysis for $8,000
+							</button>
+
+							<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+							  <div class="modal-dialog">
+								<div class="modal-content">
+								  <div class="modal-header">
+									<h5 class="modal-title" id="confirmModalLabel"> Confirmation</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								  </div>
+								  <div class="modal-body">
+									Are you sure you want to buy the analysis for $8,000?
+								  </div>
+								  <div class="modal-footer">
+                                    <script>
+                                        function updateProfit(){
+                                            var formatter = new Intl.NumberFormat('en-US', {
+                                                style: 'currency',
+                                                currency: 'USD',});
+                                            var profit_r1=parseFloat("{{ profit_r1 }}") - 8000;
+                                            document.getElementById("profit_r1").innerHTML=formatter.format(profit_r1);
+                                            document.getElementById("analysis_purchase").value=8000;}
+                                    </script>
+                                    
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button onclick="updateProfit()" type="button" name="Button" value="Modal" class="btn btn-primary mx-1" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#analysisModal">Show Analysis</button>
+                                  </div>
+								</div>
+							  </div>
+							</div>
+                        </div>
+                        
+                        <div class="modal fade" id="analysisModal" tabindex="-1" aria-labelledby="analysisModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Risk Analysis</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        
+                        <form method="post">
+                        <input type="hidden" id ="analysis_purchase" name="analysis_purchase"></input>
 					<hr>
 					
                     <form action="/round3/feedback/" method="post">

@@ -6,11 +6,12 @@
     <title>SCM Risk Game</title>
 </head>
 
-<body>
+<body onload="myFunction()">
+	<script src="//code.jquery.com/jquery-1.11.3.js" type="text/javascript"></script>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid"> 
             <a class="navbar-brand">
-                <img src="static/images/logistics.svg" width="30" height="30" alt="">
+                <img src="/static/images/logistics.svg" width="30" height="30" alt="">
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto">
@@ -48,8 +49,8 @@
 						
 						 <hr> 
 						<div class="pb-3">
-							<p class="pt-2"> This time, you can purchase the risk analysis to help you estimate the probability of the risk.</p>
-							<button type="button" class="btn btn-outline-secondary d-grid gap-2 col-6 mx-auto" data-bs-toggle="modal" data-bs-target="#confirmModal">
+							<p class="pt-2"> You can purchase the risk analysis to help you estimate the probability of the risk.</p>
+							<button id="analysisButton" type="button" class="btn btn-outline-secondary d-grid gap-2 col-6 mx-auto" onclick="openConfirmationModal()">
 								Buy analysis for $8,000
 							</button>
 
@@ -66,13 +67,28 @@
 								  <div class="modal-footer">
                                     <script>
                                         function updateProfit(){
+											setBought();
                                             var formatter = new Intl.NumberFormat('en-US', {
                                                 style: 'currency',
                                                 currency: 'USD',});
                                             var profit_r1=parseFloat("{{ profit_r1 }}") - 8000;
                                             document.getElementById("profit_r1").innerHTML=formatter.format(profit_r1);
-                                            document.getElementById("analysis_purchase").value=8000;}
-                                    </script>
+                                            document.getElementById("analysis_purchase").value=8000;
+										}					
+
+										function setBought() {
+											$("#analysisButton").html("Show analysis")
+											$("#analysisButton").attr("onclick", "showAnalysis()")
+										}
+										
+										function showAnalysis() {
+											$("#analysisModal").modal("show")
+										}
+										
+										function openConfirmationModal(){											
+											$("#confirmModal").modal("show")
+										}
+									</script>
                                     
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                     <button onclick="updateProfit()" type="button" name="Button" value="Modal" class="btn btn-primary mx-1" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#analysisModal">Show Analysis</button>
@@ -82,19 +98,32 @@
 							</div>
                         </div>
                         
-                        <div class="modal fade" id="analysisModal" tabindex="-1" aria-labelledby="analysisModalLabel" aria-hidden="true">
+                       <div class="modal fade" id="analysisModal" tabindex="-1" aria-labelledby="analysisModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Risk Analysis</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                </div>
-                            </div>
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Risk Analysis</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<div class="card mb-3">
+										  <div class="row g-0">
+											<div class="col-5 pt-3">
+											  <img src="/static/images/analysis_8.jpg">
+											</div>
+											<div class="col-7">
+											  <div class="card-body">
+													<p class="card-text"> "I revised your IT security last month, and as far as I can say, you will be hit by these attacks at a 4-5% probability." </p>
+													<p class = "card-text fst-italic"> - Joe, IT Security Analyst </p>
+												</div>
+											</div>
+										  </div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+									</div>
+								</div>
                             </div>
                         </div>
 						
@@ -159,7 +188,7 @@
                         <tbody>
                             <tr>
 								<td>Selling price</td>
-								<td>$ 200</td>
+								<td><nobr>$ 200</nobr></td>
                             </tr>
 							
                             <tr>
@@ -197,7 +226,7 @@
 							<tr>
 								<td>Current inventory level:</td>
 								<td> tbd </td>
-                            </tr
+                            </tr>
 						</tbody>
 					</table> </b>
 				</div>

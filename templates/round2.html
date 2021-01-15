@@ -9,7 +9,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid"> 
             <a class="navbar-brand">
-                <img src="static/images/logistics.svg" width="30" height="30" alt="">
+                <img src="/static/images/logistics.svg" width="30" height="30" alt="">
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto">
@@ -82,17 +82,30 @@
                         
                         <div class="modal fade" id="analysisModal" tabindex="-1" aria-labelledby="analysisModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Risk Analysis</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                </div>
-                            </div>
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Risk Analysis</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<div class="card mb-3">
+										  <div class="row g-0">
+											<div class="col-5">
+											  <img src="/static/images/analysis_2.jpg">
+											</div>
+											<div class="col-7">
+											  <div class="card-body">
+													<p class="card-text"> "If you ask me, it is quite probable that quality issues will arise. I know this company for a long time. You want a number? Maybe 80-95% probable." </p>
+													<p class = "card-text fst-italic"> - Huang, production worker with 45 years of experience </p>
+												</div>
+											</div>
+										  </div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+									</div>
+								</div>
                             </div>
                         </div>
                         
@@ -231,7 +244,7 @@
                         <tbody>
                             <tr>
 								<td>Selling price</td>
-								<td>$ 200</td>
+								<td> <nobr> $ 200 </nobr> </td>
                             </tr>
 							
                             <tr>

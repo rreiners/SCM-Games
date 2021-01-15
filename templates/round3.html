@@ -128,15 +128,57 @@
                         
                         <hr>
                         
-                        <form method="post">
+						<form method="post">
                         <input type="hidden" id ="analysis_purchase" name="analysis_purchase"></input>
 											
 							<p class="pt-2"> Once in a lifetime chance to establish a new supplier at which you can purchase skateboards for $90 and that is known for really having no issues with production conditions. He will be happy to receive your offers in the next periods, too. Establishing the new supplier will cost you $ 5,000. </p>
-								
-							<div class="d-grid gap-2 col-6 mx-auto">
-								<input type="checkbox" class="btn-check" name="option1" id="option1" value="5000" autocomplete="off">
-								<label class="btn btn-outline-primary" for="option1">Establish CN Productions as a new supplier for $ 5,000</label>    
+							
+							<p> To help you decide, your colleague has prepared an overview over the past performance of the three suppliers. </p>
+							
+							<script>
+								function openOverview(){
+									$("#openOverviewSuppliers").modal("show")
+								}
+							</script>
+							
+							<div class="d-grid gap-2 col-6 mx-auto pb-2">
+								<input type="checkbox" class="btn-check" name="overviewSuppliers" id="overview" autocomplete="off" onclick="openOverview()">
+								<label class="btn btn-outline-secondary" for="overview">Show overview over suppliers</label>   
 							</div>
+																	
+							<div class="modal fade" id="openOverviewSuppliers" tabindex="-1" aria-labelledby="analysisModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-large">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Supplier Overview</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="row row-cols-1 row-cols-md-1 g-4">
+										<div class="col">
+										  <div class="card">
+											<img src="/static/images/US Productions.png" class="card-img-top">
+										   </div>
+										  <div class="card">
+											<img src="/static/images/TW Productions.png" class="card-img-top">
+										  </div>
+										  <div class="card">
+											<img src="/static/images/CN Productions.png" class="card-img-top">
+										  </div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+									</div>
+								</div>
+                            </div>
+                        </div>
+							
+							<div class="d-grid gap-2 col-6 mx-auto">
+								<input type="checkbox" class="btn-check" name="option1" id="option1" value="5000" autocomplete="off" onclick="toggleSupplier()">
+								<label class="btn btn-outline-primary" for="option1">Establish CN Productions as a new supplier for $ 5,000</label>   
+							</div>
+							
+							
 							
 							<p class="pt-5"> Negotiate new contract terms with the manager of TW Productions so that they pay half of the fine ($ 3,000) which falls due in case of misinformation.</p>
 							
@@ -144,44 +186,49 @@
                                 <input type="checkbox" class="btn-check" name="option2" id="option2" value="3000" autocomplete="off">
                                 <label class="btn btn-outline-primary" for="option2">Negotiate new contract terms for $ 3,000</label>
                             </div>
-														
-							<p class="pt-5"> You can purchase the risk analysis to help you estimate the probability of the risk.</p>
-							
-							<div class="d-grid gap-2 col-6 mx-auto">
-                                <input type="checkbox" class="btn-check" name="option3" id="option3" value="8000" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="option2">Negotiate new contract terms for $ 8,000</label>
-                            </div>
+							<hr>
 					</div>
-					<hr>
-					
-                    <form action="/round3/feedback/" method="post">
-						<p> <b> How much would you like to order from each supplier? </b> </p>
-                        <div class="row mb-3">
-                            <label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity US Productions</label>
-                            <div class = "col-7">
-								<input name ="order_US" type="text" class="form-control" id="formGroupExampleInput1" placeholder="insert order quantity" >
+							<p> <b> How much would you like to order from each supplier? </b> </p>
+							<div class="row mb-3">
+								<label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity US Productions</label>
+								<div class = "col-7">
+									<input name ="order_US" type="number" class="form-control" id="formGroupExampleInput1" placeholder="insert order quantity" >
+								</div>
 							</div>
-                        </div>
 						
-						<div class="row mb-3">
-                            <label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity TW Productions</label>
-                            <div class = "col-7">
-								<input name ="order_TW" type="text" class="form-control" id="formGroupExampleInput2" placeholder="insert order quantity" >
+							<div class="row mb-3">
+								<label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity TW Productions</label>
+								<div class = "col-7">
+									<input name ="order_TW" type="number" class="form-control" id="formGroupExampleInput2" placeholder="insert order quantity" >
+								</div>
 							</div>
-                        </div>
+												
+							<script>
+								var showSupplier = false;
+								function toggleSupplier(){
+									if (showSupplier){
+										$("#step-1").hide();
+										$("#formGroupExampleInput3").val("0");
+									}
+									else {
+										$("#step-1").show();
+									}
+									showSupplier = !showSupplier;
+								}
+							</script>
 						
-						<div class="row mb-3">
-                            <label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity CN Productions</label>
-                            <div class = "col-7">
-								<input name ="order_CN" type="text" class="form-control" id="formGroupExampleInput3" placeholder="insert order quantity" >
+							<div id="step-1" class="row mb-3" style="display:none;">
+								<label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity CN Productions</label>
+								<div class = "col-7">
+									<input name ="order_CN" type="number" class="form-control" id="formGroupExampleInput3" placeholder="insert order quantity" >
+								</div>
 							</div>
-                        </div>
-                        
-                        <div class="d-grid gap-2 d-md-flex pt-3 pb-5 justify-content-md-end">
-							 <button onclick="calculate()" type="button" name="Button" value="Modal" class="btn btn-secondary mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Calculate cost</button>
-                            <button type="submit" class="btn btn-primary mx-1">Submit orders</button>   
-                        </div>
-                    </form>
+							
+							<div class="d-grid gap-2 d-md-flex pt-3 pb-5 justify-content-md-end">
+								 <button onclick="calculate()" type="button" name="Button" value="Modal" class="btn btn-secondary mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Calculate cost</button>
+								<button type="submit" class="btn btn-primary mx-1">Submit orders</button>   
+							</div>
+						</form>
 					
 					 <script>
                         function calculate()
@@ -192,6 +239,7 @@
 
                                 var field1=parseFloat(document.getElementById("formGroupExampleInput1").value)|| 0;
                                 var field2=parseFloat(document.getElementById("formGroupExampleInput2").value)|| 0;
+								var field3=parseFloat(document.getElementById("formGroupExampleInput3").value)|| 0;
                                 
                                 var reaction = null; 
                                 var inputElements = document.getElementsByClassName('btn-check');
@@ -202,9 +250,9 @@
                                     }
                                 }
                                 
-                                var revenue=Math.min((field1+field2),480)*200
-                                var purchase=(field1*100)+(field2*85)
-                                var holding=Math.max((field1+field2-370),0)*15
+                                var revenue=Math.min((field1+field2+field3),480)*200
+                                var purchase=(field1*100)+(field2*85)+(field3*90)
+                                var holding=Math.max((field1+field2+field3-480),0)*15
                                 var profit=revenue-purchase-holding-reaction
 
                                 document.getElementById("revenue").innerHTML=formatter.format(revenue);
@@ -226,7 +274,7 @@
                                 <div class="alert alert-success" role="alert">
                                         <p> 
                                         <div class="row">
-                                        <div >Expected values if risk does not occur! </div>
+                                        <div><b>Figures under the assumption that risk does not occur! </b> </div>
                                         <div id="title" ></div>
                                         </div>
                                         </p>
@@ -312,11 +360,11 @@
                                         style: 'currency',
                                         currency: 'USD',});
 
-                                    var profit_r1 = "{{ profit_r2 }}";
-                                    var inventory_r1 = "{{ inventory_r2 }}";
+                                    var profit_r2 = "{{ profit_r2 }}";
+                                    var inventory_r2 = "{{ inventory_r2 }}";
                                     
-                                    document.getElementById("profit_r2").innerHTML=formatter.format(profit_r1);
-                                    document.getElementById("inventory_r2").innerHTML=inventory_r1;
+                                    document.getElementById("profit_r2").innerHTML=formatter.format(profit_r2);
+                                    document.getElementById("inventory_r2").innerHTML=inventory_r2;
                                 }
                         </script>
 

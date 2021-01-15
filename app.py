@@ -12,14 +12,16 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+usedCN = False
+
 class Data(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     order_US = db.Column(db.Integer)
     order_TW = db.Column(db.Integer)
     order_CHN = db.Column(db.Integer)
-    recieve_US = db.Column(db.Integer)
-    recieve_TW = db.Column(db.Integer)
-    recieve_CHN = db.Column(db.Integer)
+    receive_US = db.Column(db.Integer)
+    receive_TW = db.Column(db.Integer)
+    receive_CHN = db.Column(db.Integer)
     analysis = db.Column(db.Integer)
     measure1 = db.Column(db.Integer)
     measure2 = db.Column(db.Integer)
@@ -28,13 +30,13 @@ class Data(db.Model):
     round_profit = db.Column(db.Integer)
     total_profit = db.Column(db.Integer)
 
-    def __init__(self, order_US, order_TW, order_CHN, recieve_US, recieve_TW, recieve_CHN, analysis, measure1, measure2, measure3, inventory, round_profit, total_profit):
+    def __init__(self, order_US, order_TW, order_CHN, receive_US, receive_TW, receive_CHN, analysis, measure1, measure2, measure3, inventory, round_profit, total_profit):
         self.order_US = order_US
         self.order_TW = order_TW
         self.order_CHN = order_CHN
-        self.recieve_US = recieve_US
-        self.recieve_TW = recieve_TW
-        self.recieve_CHN = recieve_CHN
+        self.receive_US = receive_US
+        self.receive_TW = receive_TW
+        self.receive_CHN = receive_CHN
         self.analysis = analysis
         self.measure1 = measure1
         self.measure2 = measure2
@@ -61,9 +63,9 @@ def round1():
         my_data.order_US = 0
         my_data.order_TW = 0
         my_data.order_CHN = 0
-        my_data.recieve_US = 0
-        my_data.recieve_TW = 0
-        my_data.recieve_CHN = 0
+        my_data.receive_US = 0
+        my_data.receive_TW = 0
+        my_data.receive_CHN = 0
         my_data.analysis = 0
         my_data.measure1 = 0
         my_data.measure2 = 0
@@ -80,14 +82,14 @@ def round1():
         order_CHN = 0
         
         # calculate whats happening 
-        recieve_US = order_US
-        recieve_TW = round(order_TW*0.8)
-        recieve_CHN = 0
-        inventory = max(0, recieve_US + recieve_TW - 453)
-        dem_cov = min(453, recieve_US + recieve_TW)
-        service_level = min(100,round(((recieve_US + recieve_TW)/453)*100))
-        revenue = min(recieve_US+recieve_TW, 453)*200
-        purchase = (recieve_US*100) + (recieve_TW*85)
+        receive_US = order_US
+        receive_TW = round(order_TW*0.8)
+        receive_CHN = 0
+        inventory = max(0, receive_US + receive_TW - 453)
+        dem_cov = min(453, receive_US + receive_TW)
+        service_level = min(100,round(((receive_US + receive_TW)/453)*100))
+        revenue = min(receive_US+receive_TW, 453)*200
+        purchase = (receive_US*100) + (receive_TW*85)
         holding = inventory * 15
         round_profit = revenue - purchase - holding
         total_profit = round_profit
@@ -97,16 +99,16 @@ def round1():
         my_data.order_US = order_US
         my_data.order_TW = order_TW
         my_data.order_CHN = order_CHN
-        my_data.recieve_US = recieve_US
-        my_data.recieve_TW = recieve_TW
-        my_data.recieve_CHN = recieve_CHN
+        my_data.receive_US = receive_US
+        my_data.receive_TW = receive_TW
+        my_data.receive_CHN = receive_CHN
         my_data.inventory = inventory
         my_data.round_profit = round_profit
         my_data.total_profit = total_profit
         db.session.commit()
         
         return render_template("round1_feedback.html", content = "testing",
-        order_US=order_US, order_TW=order_TW, recieve_US=recieve_US, recieve_TW=recieve_TW,
+        order_US=order_US, order_TW=order_TW, receive_US=receive_US, receive_TW=receive_TW,
         inventory=inventory, dem_cov=dem_cov, service_level=service_level, profit=format(total_profit, ",.2f"))
     else:
         return render_template("round1.html", content = "testing")
@@ -131,23 +133,23 @@ def round2():
         order_CHN = 0 
         
         # calculate whats happening
-        recieve_CHN = 0
-        recieve_US = order_US
+        receive_CHN = 0
+        receive_US = order_US
         if option1 == 13500:
-            recieve_TW = round(order_TW*0.8)
+            receive_TW = round(order_TW*0.8)
         else:
-            recieve_TW = round(order_TW*0.4) 
-        if (option2 == 5000 and inventory_r1 + recieve_US + recieve_TW < 370): 
-            delta1 = 370 - inventory_r1 - recieve_US - recieve_TW
-            delta2 = order_TW - recieve_TW
+            receive_TW = round(order_TW*0.4) 
+        if (option2 == 5000 and inventory_r1 + receive_US + receive_TW < 370): 
+            delta1 = 370 - inventory_r1 - receive_US - receive_TW
+            delta2 = order_TW - receive_TW
             compensation = (min(delta1, delta2))  * 57.5
         else: 
             compensation = 0
-        inventory = max(0, inventory_r1 + recieve_US + recieve_TW - 370)
-        dem_cov = min(370, inventory_r1 + recieve_US + recieve_TW)
+        inventory = max(0, inventory_r1 + receive_US + receive_TW - 370)
+        dem_cov = min(370, inventory_r1 + receive_US + receive_TW)
         service_level = min(100,round(((dem_cov)/370)*100))
         revenue = min(dem_cov, 370)*200
-        purchase = (recieve_US*100) + (recieve_TW*85)
+        purchase = (receive_US*100) + (receive_TW*85)
         holding = inventory * 15
         round_profit = revenue + compensation - purchase - holding - analysis - option1 - option2
         total_profit = round_profit + profit_r1
@@ -157,9 +159,9 @@ def round2():
         my_data.order_US = order_US
         my_data.order_TW = order_TW
         my_data.order_CHN = order_CHN
-        my_data.recieve_US = recieve_US
-        my_data.recieve_TW = recieve_TW
-        my_data.recieve_CHN = recieve_CHN
+        my_data.receive_US = receive_US
+        my_data.receive_TW = receive_TW
+        my_data.receive_CHN = receive_CHN
         my_data.analysis = analysis
         my_data.measure1 = option1
         my_data.measure2 = option2
@@ -169,7 +171,7 @@ def round2():
         db.session.commit()
         
         return render_template("round2_feedback.html", content = "testing", 
-        order_US=order_US, order_TW=order_TW, recieve_US=recieve_US, recieve_TW=recieve_TW, compensation=format(compensation, ",.2f"),
+        order_US=order_US, order_TW=order_TW, receive_US=receive_US, receive_TW=receive_TW, compensation=format(compensation, ",.2f"),
         inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"))
     else:
         query_profit = db.session.query(Data.total_profit).filter_by(id = 1).first()._asdict()
@@ -183,9 +185,56 @@ def round2():
 
 @app.route('/round3/', methods=['GET', 'POST'])
 def round3():
-
+    global usedCN
     if request.method == 'POST':
-        return render_template("round3.html", content = "testing")
+        # get inventory and profit from database
+        query_profit = db.session.query(Data.total_profit).filter_by(id = 2).first()._asdict()
+        query_inventory = db.session.query(Data.inventory).filter_by(id = 2).first()._asdict()
+        profit_r2 = int(query_profit.get("total_profit"))
+        inventory_r2 = int(query_inventory.get("inventory"))
+        
+        # get data from form 
+        option1 = int(request.form.get('option1') or 0)
+        option2 = int(request.form.get('option2') or 0)
+        analysis = int(request.form['analysis_purchase'] or 0)
+        order_US = int(request.form['order_US'] or 0)
+        order_TW = int(request.form['order_TW'] or 0)
+        order_CHN = int(request.form['order_CN'] or 0)
+        
+        if option1 != 0:
+            usedCN = True
+        
+        
+        # calculate whats happening
+        receive_CHN = order_CHN
+        receive_US = order_US
+        receive_TW = order_TW
+        inventory = max(0, inventory_r2 + receive_US + receive_TW + receive_CHN - 480)
+        dem_cov = min(480, inventory_r2 + receive_US + receive_TW + receive_CHN)
+        service_level = min(100,round(((dem_cov)/480)*100))
+        revenue = min(dem_cov, 480)*200
+        purchase = (receive_US*100) + (receive_TW*85)+ (receive_CHN*90)
+        holding = inventory * 15
+        round_profit = revenue - purchase - holding - analysis - option1 - option2
+        total_profit = round_profit + profit_r2
+
+        # access Database row 3 and update Database
+        my_data = Data.query.get(3)
+        my_data.order_US = order_US
+        my_data.order_TW = order_TW
+        my_data.order_CHN = order_CHN
+        my_data.receive_US = receive_US
+        my_data.receive_TW = receive_TW
+        my_data.receive_CHN = receive_CHN
+        my_data.analysis = analysis
+        my_data.measure1 = option1
+        my_data.measure2 = option2
+        my_data.inventory = inventory
+        my_data.round_profit = round_profit
+        my_data.total_profit = total_profit
+        db.session.commit()
+        return render_template("round3_feedback.html", content = "testing",
+        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"), showCN = usedCN)
     else:
         query_profit = db.session.query(Data.total_profit).filter_by(id = 2).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(id = 2).first()._asdict()

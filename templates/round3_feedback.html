@@ -31,7 +31,7 @@
             <div class="col-7">
                 <div class="container pb-4">
 					<h2> <b> FEEDBACK PERIOD 3 </b> </h2>
-					<p class="text-primary pt-4"style ="text-align: justify;"> Amnesty International visited the site, and was happy about the working conditions, and so are we! </p>
+					<p class="text-primary pt-4"style ="text-align: justify;"> Amnesty International visited the site. They were happy about the working conditions, and so are we! </p>
 					
 					<p> Your orders: </p>
 					
@@ -47,23 +47,25 @@
 						<tbody>
 						<tr>
 							<th scope="row">US Productions</th>
-							<td>xxx</td>
-							<td>xxx</td>
+							<td>{{ order_US }}</td>
+							<td>{{ receive_US }}</td>
 						</tr>
 						<tr>
 							<th scope="row">TW Productions</th>
-							<td>xxx</td>
-							<td>xxx</td>
-						</tr>		
-						<tr>
-							<th scope="row">CN Productions</th>
-							<td>xxx</td>
-							<td>xxx</td>
-						</tr>							
+							<td>{{ order_TW }}</td>
+							<td>{{ receive_TW }}</td>
+						</tr>
+						{% if showCN %}
+							<tr>
+								<th scope="row">CN Productions</th>
+								<td>{{ order_CHN }}</td>
+								<td>{{ receive_CHN }}</td>
+							</tr>
+						{% endif %}							
 						</tbody>
 					</table>
 					
-					<p class="pb-5"> Inventory level after receiving orders: xxx
+					<p class="pb-5"> Inventory level after receiving orders: {{ inventory }}
 					
                 </div> 
             </div>
@@ -75,8 +77,8 @@
             <div class="col-4 pt-4">		
 				<div class="container text-left pt-5">
 						Demand: 480 <br>
-						Demand covered: xxx <br>
-						Service level: x%
+						Demand covered: {{ dem_cov }} <br>
+						Service level: {{ service_level }}% 
 				</div>		
 				<hr>
 				
@@ -86,7 +88,7 @@
                        <tbody>
                             <tr>
 								<td>Profit in this period:</td>
-								<td> tbd </td>
+								<td><nobr> ${{ round_profit }} </nobr></td>
                             </tr>
 							
 							<tr>
@@ -96,7 +98,7 @@
 							
 							<tr>
 								<td>Total profit:</td>
-								<td> tbd </td>
+								<td> ${{ total_profit }} </td>
                             </tr>
 						</tbody>
 					</table> </b>

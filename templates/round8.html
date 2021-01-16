@@ -6,7 +6,7 @@
     <title>SCM Risk Game</title>
 </head>
 
-<body onload="myFunction()">
+<body onload="myFunction(); toggleSupplier()">
 	<script src="//code.jquery.com/jquery-1.11.3.js" type="text/javascript"></script>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid"> 
@@ -37,17 +37,23 @@
             <div class="col-7">
                 <div class="container pb-4">
 					<h2> <b> PERIOD 8 </b> </h2>
-				
-					<p class="text-primary pt-4"style ="text-align: justify;"> Your warehouse can be used again. </p>
+					
+					<p class="text-primary pt-4"style ="text-align: justify;"> Your warehouse can be used again.</p>
 					
 					<p class="pt-2 fs-4"> Demand for Period 8: <b> 460</b> </p>
-					
-					<div style ="text-align: justify;" class="pb-3">
-						<p>  You are in a meeting with IT-Security and they tell you that lately there have been several <b>cyber-attacks on online sport shops</b>. They are afraid that you might be an interesting target, too and they emphasize that they did not get enough budget in the last years to be able to stay up to date concerning data security systems. </p>
+                    
+                    <div style ="text-align: justify;" class="pb-3">
+                        <script> $(function () {
+                            $('.btn-check').click(function(e) {
+                              $('.btn-check').not(this).prop('checked', false);
+                            });
+                          });
+                        </script>
+                        <p>  You are in a meeting with IT-Security and they tell you that lately there have been several <b>cyber-attacks on online sport shops</b>. They are afraid that you might be an interesting target, too and they emphasize that they did not get enough budget in the last years to be able to stay up to date concerning data security systems. </p>
 						
 						<p class="pb-3">  In case you are being hit, you will <b>not be able to deliver any products in period 9</b>, because the IT department will first have to restore all data for the processes to work again. </p>
 						
-						 <hr> 
+                         <hr> 
 						<div class="pb-3">
 							<p class="pt-2"> You can purchase the risk analysis to help you estimate the probability of the risk.</p>
 							<button id="analysisButton" type="button" class="btn btn-outline-secondary d-grid gap-2 col-6 mx-auto" onclick="openConfirmationModal()">
@@ -71,8 +77,8 @@
                                             var formatter = new Intl.NumberFormat('en-US', {
                                                 style: 'currency',
                                                 currency: 'USD',});
-                                            var profit_r1=parseFloat("{{ profit_r1 }}") - 8000;
-                                            document.getElementById("profit_r1").innerHTML=formatter.format(profit_r1);
+                                            var profit_r7=parseFloat("{{ profit_r7 }}") - 8000;
+                                            document.getElementById("profit_r7").innerHTML=formatter.format(profit_r7);
                                             document.getElementById("analysis_purchase").value=8000;
 										}					
 
@@ -98,7 +104,7 @@
 							</div>
                         </div>
                         
-                       <div class="modal fade" id="analysisModal" tabindex="-1" aria-labelledby="analysisModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="analysisModal" tabindex="-1" aria-labelledby="analysisModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -127,51 +133,142 @@
                             </div>
                         </div>
 						
-						<form method="post">
-                        <input type="hidden" id ="analysis_purchase" name="analysis_purchase"></input> 
                         
-                        <hr>
-											
-						<p> You can buy a new state-of-the-art data security system which will definitely prevent any hacking. However, they are extremely costly and you will have to pay $ 45,000. </p>
-						<button type="button" class="btn btn-primary d-grid col-6 mx-auto">Buy new data security system for $ 45,000</button> 
+						<hr>
 						
-						<p class="pt-5"> You could also update the existing data security system. This will not fully protect you but assures that your processes can be restored a lot quicker in case of an attack and you will still be able to cover 85% of the periods demand. This will cost you $ 39,000.</p>
-						<button type="button" class="btn btn-primary d-grid col-6 mx-auto">Buy update for data security system for $ 39,000</button>
+						<form method="post">
+						<input type="hidden" id ="analysis_purchase" name="analysis_purchase"></input> 
+
+						<p class="pt-3">You can buy a new state-of-the-art data security system which will definitely prevent any hacking. However, they are extremely costly and you will have to pay $ 45,000. </p>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <input type="checkbox" class="btn-check" name="option1" id="option1" value="45000" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="option1">Buy new data security system for $ 45,000</label>    
+							</div>
 						
-						<p class="pt-5"> Finally, you have received an offer from a firm that is specialized on IT security. You can outsource IT security to them for $ 55,000 and they will then be liable for all losses you will suffer due to any cyber-attack.</p>
-						<button type="button" class="btn btn-primary d-grid col-6 mx-auto">Outsource IT security for $ 55,000</button>
+						<p class="pt-3">You could also update the existing data security system. This will not fully protect you but assures that your processes can be restored a lot quicker in case of an attack and you will still be able to cover 85% of the periods demand. This will cost you $ 39,000.</p>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <input type="checkbox" class="btn-check" name="option2" id="option2" value="39000" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="option2">Buy update for data security system for $ 39,000</label>
+                            </div>
 						
-					</div>
-					<hr>
-					
-                    <form action="/round8/feedback/" method="post">
+						<p class="pt-3">Finally, you have received an offer from a firm that is specialized on IT security. You can outsource IT security to them for $ 55,000 and they will then be liable for all losses you will suffer due to any cyber-attack.</p>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <input type="checkbox" class="btn-check" name="option3" id="option3" value="55000" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="option3">Outsource IT security for $ 55,000</label>
+                            </div>
+						</div>
+						<hr>
+
 						<p> <b> How much would you like to order from each supplier? </b> </p>
                         <div class="row mb-3">
                             <label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity US Productions</label>
                             <div class = "col-7">
-								<input name ="order_quantities" type="number" class="form-control" id="formGroupExampleInput" placeholder="insert order quantity" >
-							</div>
+                                <input name ="order_US" type="number" class="form-control" id="formGroupExampleInput1" placeholder="insert order quantity" >
+                            </div>
                         </div>
-						
-						<div class="row mb-3">
+                        
+                        <div class="row mb-3">
                             <label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity TW Productions</label>
                             <div class = "col-7">
-								<input name ="order_quantities" type="number" class="form-control" id="formGroupExampleInput" placeholder="insert order quantity" >
-							</div>
+                                <input name ="order_TW" type="number" class="form-control" id="formGroupExampleInput2" placeholder="insert order quantity" >
+                            </div>
                         </div>
-						
-						<div class="row mb-3">
+                        
+                        
+                        <div id="step-1" class="row mb-3" style="display:none;">
                             <label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity CN Productions</label>
                             <div class = "col-7">
-								<input name ="order_quantities" type="number" class="form-control" id="formGroupExampleInput" placeholder="insert order quantity" >
-							</div>
+                                <input name ="order_CN" type="number" class="form-control" id="formGroupExampleInput3" placeholder="insert order quantity" >
+                            </div>
                         </div>
                         
                         <div class="d-grid gap-2 d-md-flex pt-3 pb-5 justify-content-md-end">
-							<button type="button" class="btn btn-secondary ">Calculate cost</button>
-                            <button type="submit" class="btn btn-primary">Submit orders</button>
+                        	<button onclick="calculate()" type="button" name="Button" value="Modal" class="btn btn-secondary mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Calculate cost</button>
+                           	<button type="submit" class="btn btn-primary">Submit orders</button>   
+                       </div>
+					</form>
+					
+					<script>
+                        function calculate()
+                            {
+                                var formatter = new Intl.NumberFormat('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',});
+
+                                var field1=parseFloat(document.getElementById("formGroupExampleInput1").value)|| 0;
+                                var field2=parseFloat(document.getElementById("formGroupExampleInput2").value)|| 0;
+								var field3=parseFloat(document.getElementById("formGroupExampleInput3").value)|| 0;
+                                
+                                var reaction = null; 
+                                var inputElements = document.getElementsByClassName('btn-check');
+                                for(var i=0; inputElements[i]; ++i){
+                                    if(inputElements[i].checked){
+                                        reaction = inputElements[i].value;
+                                        break;
+                                    }
+                                }
+                                
+                                var revenue=Math.min((field1+field2+field3),480)*200			// ergänzen um inventar aus Vorperiode 
+                                var purchase=(field1*100)+(field2*85)+(field3*90)
+                                var holding=Math.max((field1+field2+field3-480),0)*15
+                                var profit=revenue-purchase-holding-reaction
+
+                                document.getElementById("revenue").innerHTML=formatter.format(revenue);
+                                document.getElementById("purchase").innerHTML=formatter.format(purchase);
+                                document.getElementById("holding").innerHTML=formatter.format(holding);
+                                document.getElementById("profit").innerHTML=formatter.format(profit);
+                                document.getElementById("reaction").innerHTML=formatter.format(reaction);
+                            }
+                    </script>
+					
+					 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Cost Calculation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="alert alert-success" role="alert">
+                                        <p> 
+                                        <div class="row">
+                                        <div><b>Figures under the assumption that risk does not occur! </b> </div>
+                                        <div id="title" ></div>
+                                        </div>
+                                        </p>
+                                                                                
+                                        <div class="row">
+                                        <div class="col-sm-5 col-md-6">Revenue: </div>
+                                        <div id="revenue" class="col-sm-5 offset-sm-2 col-md-6 offset-md-0"></div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">Purchase Cost:</div>
+                                        <div id="purchase" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                        </div>
+
+                                        <div class="row">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">Holding Cost:</div>
+                                        <div id="holding" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                        </div>
+
+                                        <div class="row">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">Reaction Cost:</div>
+                                        <div id="reaction" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                        </div>
+
+                                        <div class="row">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">Profit:</div>
+                                        <div id="profit" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                        </div>                                        
+                                </div> 
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
                         </div>
-                    </form>
+                        </div>
+                    </div> 
 					
 					
 					
@@ -215,21 +312,46 @@
                 </div>
 				
 				<div class="container pt-5">
-					<b> <table class="table table-borderless">
-                        
-                       <tbody>
-                            <tr>
-								<td>Current profit:</td>
-								<td> tbd </td>
-                            </tr>
-							
-							<tr>
-								<td>Current inventory level:</td>
-								<td> tbd </td>
-                            </tr>
-						</tbody>
-					</table> </b>
-				</div>
+                    <b> 
+                        <script>
+                            function myFunction() 
+                                {
+                                    var formatter = new Intl.NumberFormat('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',});
+
+                                    var profit_r7 = "{{ profit_r7 }}";
+                                    var inventory_r7 = "{{ inventory_r7 }}";
+                                    
+                                    document.getElementById("profit_r7").innerHTML=formatter.format(profit_r7);
+                                    document.getElementById("inventory_r7").innerHTML=inventory_r7;
+                                }
+
+                            function toggleSupplier(){
+                                var showSupplier = "{{ showCHN }}";
+                                if (showSupplier == "True"){
+                                    $("#step-1").show();
+                                }
+                                else {
+                                    $("#step-1").hide();
+                                    $("#formGroupExampleInput3").val("0");
+                                }
+                            }
+                        </script>
+
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>Current profit:</td>
+                                    <td><span id="profit_r7"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Current inventory level:</td>
+                                    <td><span id="inventory_r7"></span></td>
+                                </tr>
+                            </tbody>
+                    </table> </b>
+                </div>
             </div>
         </div>
         

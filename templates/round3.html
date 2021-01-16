@@ -70,8 +70,8 @@
                                             var formatter = new Intl.NumberFormat('en-US', {
                                                 style: 'currency',
                                                 currency: 'USD',});
-                                            var profit_r1=parseFloat("{{ profit_r1 }}") - 8000;
-                                            document.getElementById("profit_r1").innerHTML=formatter.format(profit_r1);
+                                            var profit_r2=parseFloat("{{ profit_r2 }}") - 8000;
+                                            document.getElementById("profit_r2").innerHTML=formatter.format(profit_r2);
                                             document.getElementById("analysis_purchase").value=8000;
 										}					
 
@@ -226,7 +226,7 @@
 							
 							<div class="d-grid gap-2 d-md-flex pt-3 pb-5 justify-content-md-end">
 								 <button onclick="calculate()" type="button" name="Button" value="Modal" class="btn btn-secondary mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Calculate cost</button>
-								<button type="submit" class="btn btn-primary mx-1">Submit orders</button>   
+								<button type="submit" class="btn btn-primary">Submit orders</button>   
 							</div>
 						</form>
 					

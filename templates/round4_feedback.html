@@ -48,23 +48,23 @@
 						<tbody>
 						<tr>
 							<th scope="row">US Productions</th>
-							<td>xxx</td>
-							<td>xxx</td>
+							<td>{{ order_US }}</td>
+							<td>{{ receive_US }}</td>
 						</tr>
 						<tr>
 							<th scope="row">TW Productions</th>
-							<td>xxx</td>
-							<td>xxx</td>
+							<td>{{ order_TW }}</td>
+							<td>{{ receive_TW }}</td>
 						</tr>	
 						<tr>
 							<th scope="row">CN Productions</th>
-							<td>xxx</td>
-							<td>xxx</td>
+							<td>{{ order_CHN }}</td>
+							<td>{{ receive_CHN }}</td>
 						</tr>	
 						</tbody>
 					</table>
 					
-					<p class="pb-5"> Inventory level after receiving orders: xxx
+					<p class="pb-5"> Inventory level after receiving orders: {{ inventory }}
 					
                 </div> 
             </div>
@@ -76,8 +76,8 @@
 					<div class="container text-left pt-5">
 					<div >
 						Demand: 520 <br>
-						Demand covered: xxx <br>
-						Service level: x%
+						Demand covered: {{ dem_cov }} <br>
+						Service level: {{ service_level }}%
 					</div>
 					<hr>
 				</div>				
@@ -88,7 +88,7 @@
                        <tbody>
                             <tr>
 								<td>Profit in this period:</td>
-								<td> tbd </td>
+								<td>{{ round_profit }}</td>
                             </tr>
 							
 							 <tr>
@@ -98,7 +98,7 @@
 							
 							<tr>
 								<td>Total profit:</td>
-								<td> tbd </td>
+								<td>{{ total_profit }}</td>
                             </tr>
 						</tbody>
 						</tbody>

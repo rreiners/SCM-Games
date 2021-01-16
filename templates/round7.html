@@ -6,7 +6,7 @@
     <title>SCM Risk Game</title>
 </head>
 
-<body onload="myFunction()">
+<body onload="myFunction(); toggleSupplier()">
 	<script src="//code.jquery.com/jquery-1.11.3.js" type="text/javascript"></script>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid"> 
@@ -42,6 +42,12 @@
 					<p class="pt-2 fs-4"> Demand for Period 7: <b> 400</b> </p>
 					
 					<div style ="text-align: justify;" class= "pb-3">
+						<script> $(function () {
+                            $('.btn-check').click(function(e) {
+                              $('.btn-check').not(this).prop('checked', false);
+                            });
+                          });
+                        </script>
 						<p>  You are watching the news on TV when you suddenly hear a familiar name. The news reporter is talking about <b>wildfires</b> which are quickly moving towards Portland. You are shocked because last time you heard about them, it was just a small outbreak in Southern California. You immediately get on the phone with your building protection manager.</p>
 						
 						<p class="pb-3">  If your warehouse burns down, you will <b>lose all your inventory</b> and you will <b>not be able to receive any shipments in this period</b>. </p>
@@ -70,8 +76,8 @@
                                             var formatter = new Intl.NumberFormat('en-US', {
                                                 style: 'currency',
                                                 currency: 'USD',});
-                                            var profit_r1=parseFloat("{{ profit_r1 }}") - 8000;
-                                            document.getElementById("profit_r1").innerHTML=formatter.format(profit_r1);
+                                            var profit_r6=parseFloat("{{ profit_r6 }}") - 8000;
+                                            document.getElementById("profit_r6").innerHTML=formatter.format(profit_r6);
                                             document.getElementById("analysis_purchase").value=8000;
 										}					
 
@@ -126,51 +132,142 @@
                             </div>
                         </div>
 						
-						<form method="post">
-                        <input type="hidden" id ="analysis_purchase" name="analysis_purchase"></input> 
                         
-                        <hr>
-											
-						<p> Your building protection manager tells you not to worry. They can install firebreaks for $ 40,000  which will make sure that the fire cannot hit your company. </p>
-						<button type="button" class="btn btn-primary d-grid col-6 mx-auto">Build firebreaks for $ 40,000</button> 
+						<hr>
 						
-						<p class="pt-5"> You could also use a storage location downtown which is up for sale for $ 20,000. However, you can only store 350 units there. Your building protection manager tells you, that in the past, firefighter have never allowed the wildfires to spread into downtown.</p>
-						<button type="button" class="btn btn-primary d-grid col-6 mx-auto">Buy new storage location for $ 20,000</button>
+						<form method="post">
+						<input type="hidden" id ="analysis_purchase" name="analysis_purchase"></input> 
+
+						<p class="pt-3">Your building protection manager tells you not to worry. They can install firebreaks for $ 40,000  which will make sure that the fire cannot hit your company. </p>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <input type="checkbox" class="btn-check" name="option1" id="option1" value="40000" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="option1">Build firebreaks for $ 40,000</label>    
+							</div>
 						
-						<p class="pt-5">You call your supplier and ask him if he can store products at his site until you need them. He agrees but not without being paid for it. Your inventory cost will increase by $ 60 per piece if you decide to ship the products from the supplier directly to your customers without ever putting them into your own storage.</p>
-						<button type="button" class="btn btn-primary d-grid col-6 mx-auto">Ship products directly from supplier to customers for additional $ 60 per piece</button>
-		
-					</div>
-					<hr>
-					
-                    <form action="/round7/feedback/" method="post">
+						<p class="pt-3">You could also use a storage location downtown which is up for sale for $ 20,000. However, you can only store 350 units there. Your building protection manager tells you, that in the past, firefighter have never allowed the wildfires to spread into downtown.</p>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <input type="checkbox" class="btn-check" name="option2" id="option2" value="20000" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="option2">Buy new storage location for $ 20,000</label>
+                            </div>
+						
+						<p class="pt-3">You call your supplier and ask him if he can store products at his site until you need them. He agrees but not without being paid for it. Your inventory cost will increase by $ 60 per piece if you decide to ship the products from the supplier directly to your customers without ever putting them into your own storage.</p>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <input type="checkbox" class="btn-check" name="option3" id="option3" value="True" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="option3">Ship products directly from supplier to customers for additional $ 60 per piece</label>
+                            </div>
+						</div>
+						<hr>
+
 						<p> <b> How much would you like to order from each supplier? </b> </p>
                         <div class="row mb-3">
                             <label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity US Productions</label>
                             <div class = "col-7">
-								<input name ="order_quantities" type="number" class="form-control" id="formGroupExampleInput" placeholder="insert order quantity" >
-							</div>
+                                <input name ="order_US" type="number" class="form-control" id="formGroupExampleInput1" placeholder="insert order quantity" >
+                            </div>
                         </div>
-						
-						<div class="row mb-3">
+                        
+                        <div class="row mb-3">
                             <label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity TW Productions</label>
                             <div class = "col-7">
-								<input name ="order_quantities" type="number" class="form-control" id="formGroupExampleInput" placeholder="insert order quantity" >
-							</div>
+                                <input name ="order_TW" type="number" class="form-control" id="formGroupExampleInput2" placeholder="insert order quantity" >
+                            </div>
                         </div>
-						
-						<div class="row mb-3">
+                        
+                        
+                        <div id="step-1" class="row mb-3" style="display:none;">
                             <label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity CN Productions</label>
                             <div class = "col-7">
-								<input name ="order_quantities" type="number" class="form-control" id="formGroupExampleInput" placeholder="insert order quantity" >
-							</div>
+                                <input name ="order_CN" type="number" class="form-control" id="formGroupExampleInput3" placeholder="insert order quantity" >
+                            </div>
                         </div>
                         
                         <div class="d-grid gap-2 d-md-flex pt-3 pb-5 justify-content-md-end">
-							<button type="button" class="btn btn-secondary ">Calculate cost</button>
-                            <button type="submit" class="btn btn-primary">Submit orders</button>
+                        	<button onclick="calculate()" type="button" name="Button" value="Modal" class="btn btn-secondary mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Calculate cost</button>
+                           	<button type="submit" class="btn btn-primary">Submit orders</button>   
+                       </div>
+					</form>
+					
+					<script>
+                        function calculate()
+                            {
+                                var formatter = new Intl.NumberFormat('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',});
+
+                                var field1=parseFloat(document.getElementById("formGroupExampleInput1").value)|| 0;
+                                var field2=parseFloat(document.getElementById("formGroupExampleInput2").value)|| 0;
+								var field3=parseFloat(document.getElementById("formGroupExampleInput3").value)|| 0;
+                                
+                                var reaction = null; 
+                                var inputElements = document.getElementsByClassName('btn-check');
+                                for(var i=0; inputElements[i]; ++i){
+                                    if(inputElements[i].checked){
+                                        reaction = inputElements[i].value;
+                                        break;
+                                    }
+                                }
+                                
+                                var revenue=Math.min((field1+field2+field3),480)*200			// ergänzen um inventar aus Vorperiode 
+                                var purchase=(field1*100)+(field2*85)+(field3*90)
+                                var holding=Math.max((field1+field2+field3-480),0)*15
+                                var profit=revenue-purchase-holding-reaction
+
+                                document.getElementById("revenue").innerHTML=formatter.format(revenue);
+                                document.getElementById("purchase").innerHTML=formatter.format(purchase);
+                                document.getElementById("holding").innerHTML=formatter.format(holding);
+                                document.getElementById("profit").innerHTML=formatter.format(profit);
+                                document.getElementById("reaction").innerHTML=formatter.format(reaction);
+                            }
+                    </script>
+					
+					 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Cost Calculation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="alert alert-success" role="alert">
+                                        <p> 
+                                        <div class="row">
+                                        <div><b>Figures under the assumption that risk does not occur! </b> </div>
+                                        <div id="title" ></div>
+                                        </div>
+                                        </p>
+                                                                                
+                                        <div class="row">
+                                        <div class="col-sm-5 col-md-6">Revenue: </div>
+                                        <div id="revenue" class="col-sm-5 offset-sm-2 col-md-6 offset-md-0"></div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">Purchase Cost:</div>
+                                        <div id="purchase" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                        </div>
+
+                                        <div class="row">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">Holding Cost:</div>
+                                        <div id="holding" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                        </div>
+
+                                        <div class="row">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">Reaction Cost:</div>
+                                        <div id="reaction" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                        </div>
+
+                                        <div class="row">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">Profit:</div>
+                                        <div id="profit" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                        </div>                                        
+                                </div> 
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
                         </div>
-                    </form>
+                        </div>
+                    </div> 
 					
 					
 					
@@ -214,21 +311,46 @@
                 </div>
 				
 				<div class="container pt-5">
-					<b> <table class="table table-borderless">
-                        
-                       <tbody>
-                            <tr>
-								<td>Current profit:</td>
-								<td> tbd </td>
-                            </tr>
-							
-							<tr>
-								<td>Current inventory level:</td>
-								<td> tbd </td>
-                            </tr
-						</tbody>
-					</table> </b>
-				</div>
+                    <b> 
+                        <script>
+                            function myFunction() 
+                                {
+                                    var formatter = new Intl.NumberFormat('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',});
+
+                                    var profit_r6 = "{{ profit_r6 }}";
+                                    var inventory_r6 = "{{ inventory_r6 }}";
+                                    
+                                    document.getElementById("profit_r6").innerHTML=formatter.format(profit_r6);
+                                    document.getElementById("inventory_r6").innerHTML=inventory_r6;
+                                }
+
+                            function toggleSupplier(){
+                                var showSupplier = "{{ showCHN }}";
+                                if (showSupplier == "True"){
+                                    $("#step-1").show();
+                                }
+                                else {
+                                    $("#step-1").hide();
+                                    $("#formGroupExampleInput3").val("0");
+                                }
+                            }
+                        </script>
+
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>Current profit:</td>
+                                    <td><span id="profit_r6"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Current inventory level:</td>
+                                    <td><span id="inventory_r6"></span></td>
+                                </tr>
+                            </tbody>
+                    </table> </b>
+                </div>
             </div>
         </div>
         

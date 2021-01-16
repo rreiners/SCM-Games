@@ -6,7 +6,7 @@
     <title>SCM Risk Game</title>
 </head>
 
-<body onload="myFunction()">
+<body onload="myFunction(); toggleSupplier()">
 	<script src="//code.jquery.com/jquery-1.11.3.js" type="text/javascript"></script>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid"> 
@@ -41,37 +41,103 @@
 					
 					   <hr> 						
                                             
-                        <form method="post">
+                    <form method="post">
                         <input type="hidden" id ="analysis_purchase" name="analysis_purchase"></input>
-					
-                    <form action="/round3/feedback/" method="post">
 						<p> <b> How much would you like to order from each supplier? </b> </p>
                         <div class="row mb-3">
                             <label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity US Productions</label>
                             <div class = "col-7">
-								<input name ="order_quantities" type="number" class="form-control" id="formGroupExampleInput" placeholder="insert order quantity" >
-							</div>
+                                <input name ="order_US" type="number" class="form-control" id="formGroupExampleInput1" placeholder="insert order quantity" >
+                            </div>
                         </div>
-						
-						<div class="row mb-3">
+                        
+                        <div class="row mb-3">
                             <label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity TW Productions</label>
                             <div class = "col-7">
-								<input name ="order_quantities" type="number" class="form-control" id="formGroupExampleInput" placeholder="insert order quantity" >
-							</div>
+                                <input name ="order_TW" type="number" class="form-control" id="formGroupExampleInput2" placeholder="insert order quantity" >
+                            </div>
                         </div>
-						
-						<div class="row mb-3">
+                        
+                        
+                        <div id="step-1" class="row mb-3" style="display:none;">
                             <label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity CN Productions</label>
                             <div class = "col-7">
-								<input name ="order_quantities" type="number" class="form-control" id="formGroupExampleInput" placeholder="insert order quantity" >
-							</div>
+                                <input name ="order_CN" type="number" class="form-control" id="formGroupExampleInput3" placeholder="insert order quantity" >
+                            </div>
                         </div>
                         
                         <div class="d-grid gap-2 d-md-flex pt-3 pb-5 justify-content-md-end">
-							<button type="button" class="btn btn-secondary ">Calculate cost</button>
-                            <button type="submit" class="btn btn-primary">Submit orders</button>
-                        </div>
+                            <button onclick="calculate()" type="button" name="Button" value="Modal" class="btn btn-secondary mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Calculate cost</button>
+                           <button type="submit" class="btn btn-primary">Submit orders</button>   
+                       </div>
                     </form>
+
+                    <script>
+                        function calculate()
+                            {
+                                var formatter = new Intl.NumberFormat('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',});
+
+                                var field1=parseFloat(document.getElementById("formGroupExampleInput1").value)|| 0;
+                                var field2=parseFloat(document.getElementById("formGroupExampleInput2").value)|| 0;
+                                var field3=parseFloat(document.getElementById("formGroupExampleInput3").value)|| 0;
+                                
+                                var revenue=Math.min((field1+field2+field3),380)*200
+                                var purchase=(field1*100)+(field2*85)+(field3*90)
+                                var holding=Math.max((field1+field2+field3-380),0)*15
+                                var profit=revenue-purchase-holding
+
+                                document.getElementById("revenue").innerHTML=formatter.format(revenue);
+                                document.getElementById("purchase").innerHTML=formatter.format(purchase);
+                                document.getElementById("holding").innerHTML=formatter.format(holding);
+                                document.getElementById("profit").innerHTML=formatter.format(profit);
+                            }
+                    </script>
+                    
+                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Cost Calculation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="alert alert-success" role="alert">
+                                        <p> 
+                                        <div class="row">
+                                        <div><b>Figures under the assumption that risk does not occur! </b> </div>
+                                        <div id="title" ></div>
+                                        </div>
+                                        </p>
+                                                                                
+                                        <div class="row">
+                                        <div class="col-sm-5 col-md-6">Revenue: </div>
+                                        <div id="revenue" class="col-sm-5 offset-sm-2 col-md-6 offset-md-0"></div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">Purchase Cost:</div>
+                                        <div id="purchase" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                        </div>
+
+                                        <div class="row">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">Holding Cost:</div>
+                                        <div id="holding" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                        </div>
+
+                                        <div class="row">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">Profit:</div>
+                                        <div id="profit" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                        </div>                                        
+                                </div> 
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div> 
 					
 					
 					
@@ -115,21 +181,46 @@
                 </div>
 				
 				<div class="container pt-5">
-					<b> <table class="table table-borderless">
-                        
-                       <tbody>
-                            <tr>
-								<td>Current profit:</td>
-								<td> tbd </td>
-                            </tr>
-							
-							<tr>
-								<td>Current inventory level:</td>
-								<td> tbd </td>
-                            </tr
-						</tbody>
-					</table> </b>
-				</div>
+                    <b> 
+                        <script>
+                            function myFunction() 
+                                {
+                                    var formatter = new Intl.NumberFormat('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',});
+
+                                    var profit_r4 = "{{ profit_r4 }}";
+                                    var inventory_r4 = "{{ inventory_r4 }}";
+                                    
+                                    document.getElementById("profit_r4").innerHTML=formatter.format(profit_r4);
+                                    document.getElementById("inventory_r4").innerHTML=inventory_r4;
+                                }
+
+                            function toggleSupplier(){
+                                var showSupplier = "{{ showCHN }}";
+                                if (showSupplier == "True"){
+                                    $("#step-1").show();
+                                }
+                                else {
+                                    $("#step-1").hide();
+                                    $("#formGroupExampleInput3").val("0");
+                                }
+                            }
+                        </script>
+
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>Current profit:</td>
+                                    <td><span id="profit_r4"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Current inventory level:</td>
+                                    <td><span id="inventory_r4"></span></td>
+                                </tr>
+                            </tbody>
+                    </table> </b>
+                </div>
             </div>
         </div>
         

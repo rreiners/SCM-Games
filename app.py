@@ -303,8 +303,6 @@ def round4():
         else:
             usedCHN = False
         
-        print(usedCHN)
-
         return render_template("round4.html", content = "testing",
         profit_r3 = profit_r3, inventory_r3 = inventory_r3, showCHN = usedCHN)
 
@@ -313,26 +311,210 @@ def round4():
 def round5():
 
     if request.method == 'POST':
-        return render_template("round5.html", content = "testing")
+
+        # get inventory and profit from database                                                                    ##### hier habe ich aufgehört 
+        query_profit = db.session.query(Data.total_profit).filter_by(id = 4).first()._asdict()
+        query_inventory = db.session.query(Data.inventory).filter_by(id = 4).first()._asdict()
+        profit_r4 = int(query_profit.get("total_profit"))
+        inventory_r4 = int(query_inventory.get("inventory"))
+        
+        # get data from form 
+        analysis = int(request.form['analysis_purchase'] or 0)
+        order_US = int(request.form['order_US'] or 0)
+        order_TW = int(request.form['order_TW'] or 0)
+        order_CHN = int(request.form['order_CN'] or 0)
+        
+        # calculate whats happening
+        receive_CHN = order_CHN
+        receive_US = order_US
+        receive_TW = order_TW
+        inventory = max(0, inventory_r4 + receive_US + receive_TW + receive_CHN - 380)
+        dem_cov = min(380, inventory_r4 + receive_US + receive_TW + receive_CHN)
+        service_level = min(100,round(((dem_cov)/380)*100))
+        revenue = min(dem_cov, 380)*200
+        purchase = (receive_US*100) + (receive_TW*85)+ (receive_CHN*90)
+        holding = inventory * 15
+        round_profit = revenue - purchase - holding - analysis
+        total_profit = round_profit + profit_r4
+
+        print(profit_r4)
+
+        # access Database row 3 and update Database
+        my_data = Data.query.get(5)
+        my_data.order_US = order_US
+        my_data.order_TW = order_TW
+        my_data.order_CHN = order_CHN
+        my_data.receive_US = receive_US
+        my_data.receive_TW = receive_TW
+        my_data.receive_CHN = receive_CHN
+        my_data.analysis = analysis
+        my_data.inventory = inventory
+        my_data.round_profit = round_profit
+        my_data.total_profit = total_profit
+        db.session.commit()
+
+        return render_template("round5_feedback.html", content = "testing",
+        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"))
     else:
-        return render_template("round5.html", content = "testing")
+        query_profit = db.session.query(Data.total_profit).filter_by(id = 4).first()._asdict()
+        query_inventory = db.session.query(Data.inventory).filter_by(id = 4).first()._asdict()
+        query_CHNinstall = db.session.query(Data.measure1).filter_by(id = 3).first()._asdict()  #must always be id=3
+        profit_r4 = query_profit.get("total_profit")
+        inventory_r4 = query_inventory.get("inventory")
+        CHNinstall = query_CHNinstall.get("measure1")
+
+        if CHNinstall == 5000:
+            usedCHN = True
+        else:
+            usedCHN = False
+
+        return render_template("round5.html", content = "testing",
+        profit_r4 = profit_r4, inventory_r4 = inventory_r4, showCHN = usedCHN)
 
 
 @app.route('/round6/', methods=['GET', 'POST'])
 def round6():
 
     if request.method == 'POST':
-        return render_template("round6.html", content = "testing")
+        # get inventory and profit from database                                                                    
+        query_profit = db.session.query(Data.total_profit).filter_by(id = 5).first()._asdict()
+        query_inventory = db.session.query(Data.inventory).filter_by(id = 5).first()._asdict()
+        profit_r5 = int(query_profit.get("total_profit"))
+        inventory_r5 = int(query_inventory.get("inventory"))
+        
+        # get data from form 
+        analysis = int(request.form['analysis_purchase'] or 0)
+        order_US = int(request.form['order_US'] or 0)
+        order_TW = int(request.form['order_TW'] or 0)
+        order_CHN = int(request.form['order_CN'] or 0)
+        
+        # calculate whats happening
+        receive_CHN = order_CHN
+        receive_US = order_US
+        receive_TW = order_TW
+        inventory = max(0, inventory_r5 + receive_US + receive_TW + receive_CHN - 430)
+        dem_cov = min(430, inventory_r5 + receive_US + receive_TW + receive_CHN)
+        service_level = min(100,round(((dem_cov)/430)*100))
+        revenue = min(dem_cov, 430)*200
+        purchase = (receive_US*110) + (receive_TW*85)+ (receive_CHN*90)
+        holding = inventory * 15
+        round_profit = revenue - purchase - holding - analysis
+        total_profit = round_profit + profit_r5
+
+        # access Database row 3 and update Database
+        my_data = Data.query.get(6)
+        my_data.order_US = order_US
+        my_data.order_TW = order_TW
+        my_data.order_CHN = order_CHN
+        my_data.receive_US = receive_US
+        my_data.receive_TW = receive_TW
+        my_data.receive_CHN = receive_CHN
+        my_data.analysis = analysis
+        my_data.inventory = inventory
+        my_data.round_profit = round_profit
+        my_data.total_profit = total_profit
+        db.session.commit()
+
+        return render_template("round6_feedback.html", content = "testing",
+        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"))
     else:
-        return render_template("round6.html", content = "testing")
+        query_profit = db.session.query(Data.total_profit).filter_by(id = 5).first()._asdict()
+        query_inventory = db.session.query(Data.inventory).filter_by(id = 5).first()._asdict()
+        query_CHNinstall = db.session.query(Data.measure1).filter_by(id = 3).first()._asdict()  #must always be id=3
+        profit_r5 = query_profit.get("total_profit")
+        inventory_r5 = query_inventory.get("inventory")
+        CHNinstall = query_CHNinstall.get("measure1")
+
+        if CHNinstall == 5000:
+            usedCHN = True
+        else:
+            usedCHN = False
+
+        return render_template("round6.html", content = "testing",
+        profit_r5 = profit_r5, inventory_r5 = inventory_r5, showCHN = usedCHN)
 
 @app.route('/round7/', methods=['GET', 'POST'])
 def round7():
 
     if request.method == 'POST':
-        return render_template("round7.html", content = "testing")
+        # get inventory and profit from database                                                                    
+        query_profit = db.session.query(Data.total_profit).filter_by(id = 6).first()._asdict()
+        query_inventory = db.session.query(Data.inventory).filter_by(id = 6).first()._asdict()
+        profit_r6 = int(query_profit.get("total_profit"))
+        inventory_r6 = int(query_inventory.get("inventory"))
+        
+        # get data from form 
+        analysis = int(request.form['analysis_purchase'] or 0)
+        option1 = int(request.form.get('option1') or 0)
+        option2 = int(request.form.get('option2') or 0)
+        option3 = True if request.form.get('option3') == 'True' else False
+
+        order_US = int(request.form['order_US'] or 0)
+        order_TW = int(request.form['order_TW'] or 0)
+        order_CHN = int(request.form['order_CN'] or 0)
+        
+        # calculate whats happening
+        receive_CHN = order_CHN
+        receive_US = order_US
+        receive_TW = order_TW
+
+        ship_cost = 0
+        if option1 == 40000:
+            dem_cov = min(400, inventory_r6 + receive_US + receive_TW + receive_CHN)
+            inventory = max(0, inventory_r6 + receive_US + receive_TW + receive_CHN - 400)
+        elif option2 == 20000:
+            dem_cov = min(350, inventory_r6 + receive_CHN + receive_TW + receive_US)
+            inventory = 0
+        elif option3 == True: 
+            dem_cov = min(400, receive_US + receive_TW + receive_CHN)
+            inventory = max(0, receive_US + receive_TW + receive_CHN - 400)
+            ship_cost = (receive_US + receive_TW + receive_CHN) * 60
+        else:
+            dem_cov = 0 
+            inventory = 0
+
+
+        service_level = min(100,round(((dem_cov)/400)*100))
+        revenue = min(dem_cov, 400)*200
+        purchase = (receive_US*110) + (receive_TW*85)+ (receive_CHN*90)
+        holding = inventory * 15
+        round_profit = revenue - purchase - holding - analysis - option1 - option2 - ship_cost
+        total_profit = round_profit + profit_r6
+
+        # access Database row 3 and update Database
+        my_data = Data.query.get(7)
+        my_data.order_US = order_US
+        my_data.order_TW = order_TW
+        my_data.order_CHN = order_CHN
+        my_data.receive_US = receive_US
+        my_data.receive_TW = receive_TW
+        my_data.receive_CHN = receive_CHN
+        my_data.analysis = analysis
+        my_data.measure1 = option1
+        my_data.measure2 = option2
+        my_data.measure3 = ship_cost
+        my_data.inventory = inventory
+        my_data.round_profit = round_profit
+        my_data.total_profit = total_profit
+        db.session.commit()
+
+        return render_template("round7_feedback.html", content = "testing",
+        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"))
     else:
-        return render_template("round7.html", content = "testing")
+        query_profit = db.session.query(Data.total_profit).filter_by(id = 6).first()._asdict()
+        query_inventory = db.session.query(Data.inventory).filter_by(id = 6).first()._asdict()
+        query_CHNinstall = db.session.query(Data.measure1).filter_by(id = 3).first()._asdict()  #must always be id=3
+        profit_r6 = query_profit.get("total_profit")
+        inventory_r6 = query_inventory.get("inventory")
+        CHNinstall = query_CHNinstall.get("measure1")
+
+        if CHNinstall == 5000:
+            usedCHN = True
+        else:
+            usedCHN = False
+
+        return render_template("round7.html", content = "testing",
+        profit_r6 = profit_r6, inventory_r6 = inventory_r6, showCHN = usedCHN)
 
 
 @app.route('/round8/', methods=['GET', 'POST'])

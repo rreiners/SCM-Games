@@ -46,10 +46,11 @@ class Data(db.Model):
 @app.route('/')                
 def home():
     
-    #for i in range(1,11):
-        #my_empty_data = Data(0,0,0,0,0,0,0,0,0,0,0,0,0)
-        #db.session.add(my_empty_data)
-        #db.session.commit()
+    if db.session.query(Data).first() == None:
+        for i in range(1,11):
+            my_empty_data = Data(0,0,0,0,0,0,0,0,0,0,0,0,0)
+            db.session.add(my_empty_data)
+            db.session.commit()
     
     return render_template("home.html", content = "testing")
 

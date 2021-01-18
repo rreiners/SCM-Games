@@ -78,14 +78,16 @@
                                 var formatter = new Intl.NumberFormat('en-US', {
                                     style: 'currency',
                                     currency: 'USD',});
+                                
+                                var inventory = parseFloat("{{ inventory_r4 }}"); 
 
                                 var field1=parseFloat(document.getElementById("formGroupExampleInput1").value)|| 0;
                                 var field2=parseFloat(document.getElementById("formGroupExampleInput2").value)|| 0;
                                 var field3=parseFloat(document.getElementById("formGroupExampleInput3").value)|| 0;
                                 
-                                var revenue=Math.min((field1+field2+field3),380)*200
+                                var revenue=Math.min((inventory+field1+field2+field3),380)*200
                                 var purchase=(field1*100)+(field2*85)+(field3*90)
-                                var holding=Math.max((field1+field2+field3-380),0)*15
+                                var holding=Math.max((inventory+field1+field2+field3-380),0)*15
                                 var profit=revenue-purchase-holding
 
                                 document.getElementById("revenue").innerHTML=formatter.format(revenue);

@@ -172,29 +172,32 @@
                                 var formatter = new Intl.NumberFormat('en-US', {
                                     style: 'currency',
                                     currency: 'USD',});
+                                
+                                var inventory = parseFloat("{{ inventory_r1 }}"); 
+                                var analsis = parseFloat(document.getElementById("analysis_purchase").value)|| 0;
 
                                 var field1=parseFloat(document.getElementById("formGroupExampleInput1").value)|| 0;
                                 var field2=parseFloat(document.getElementById("formGroupExampleInput2").value)|| 0;
                                 
-                                var reaction = null; 
+                                var reaction = 0; 
                                 var inputElements = document.getElementsByClassName('btn-check');
                                 for(var i=0; inputElements[i]; ++i){
                                     if(inputElements[i].checked){
-                                        reaction = inputElements[i].value;
-                                        break;
+                                        reaction += parseFloat(inputElements[i].value);
                                     }
                                 }
-                                
-                                var revenue=Math.min((field1+field2),370)*200
+
+                                var revenue=Math.min((field1+field2+inventory),370)*200
                                 var purchase=(field1*100)+(field2*85)
-                                var holding=Math.max((field1+field2-370),0)*15
-                                var profit=revenue-purchase-holding-reaction
+                                var holding=Math.max((inventory+field1+field2-370),0)*15
+                                var profit=revenue-purchase-holding-reaction-analsis
 
                                 document.getElementById("revenue").innerHTML=formatter.format(revenue);
                                 document.getElementById("purchase").innerHTML=formatter.format(purchase);
                                 document.getElementById("holding").innerHTML=formatter.format(holding);
                                 document.getElementById("profit").innerHTML=formatter.format(profit);
                                 document.getElementById("reaction").innerHTML=formatter.format(reaction);
+                                document.getElementById("analsis").innerHTML=formatter.format(analsis);
                             }
                     </script>
                     
@@ -232,6 +235,11 @@
                                         <div class="row">
                                         <div class="col-sm-6 col-md-5 col-lg-6">Reaction Cost:</div>
                                         <div id="reaction" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
+                                        </div>
+
+                                        <div class="row">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">Analsis Cost:</div>
+                                        <div id="analsis" class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"></div>
                                         </div>
 
                                         <div class="row">

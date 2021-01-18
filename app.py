@@ -588,7 +588,7 @@ def round8():
         return render_template("round8.html", content = "testing",
         profit_r7 = profit_r7, inventory_r7 = inventory_r7, showCHN = usedCHN)
     
-@app.route('/end', )
+@app.route('/results')
 def end():
 
     return render_template("end.html")

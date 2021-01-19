@@ -207,16 +207,19 @@
 							
 							<p> To help you decide, your colleague has prepared an overview over the past performance of the three suppliers. </p>
 							
-							<script>
+							<!--<script>
 								function openOverview(){
 									$("#openOverviewSuppliers").modal("show")
 								}
-							</script>
+							</script>-->
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#openOverviewSuppliers">
+								Show overview over suppliers
+							  </button>
 							
-							<div class="d-grid gap-2 col-6 mx-auto pb-2">
+							<!--<div class="d-grid gap-2 col-6 mx-auto pb-2">
 								<input type="checkbox" class="btn-check" name="overviewSuppliers" id="overview" autocomplete="off" onclick="openOverview()">
 								<label class="btn btn-outline-secondary" for="overview">Show overview over suppliers</label>   
-							</div>
+							</div>-->
 																	
 							<div class="modal fade" id="openOverviewSuppliers" tabindex="-1" aria-labelledby="analysisModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-large">
@@ -249,8 +252,6 @@
 								<input type="checkbox" class="btn-check" name="option1" id="option1" value="5000" autocomplete="off" onclick="toggleSupplier()">
 								<label class="btn btn-outline-primary" for="option1">Establish CN Productions as a new supplier for $ 5,000</label>   
 							</div>
-							
-							
 							
 							<p class="pt-5"> Negotiate new contract terms with the manager of TW Productions so that they pay half of the fine ($ 3,000) which falls due in case of misinformation.</p>
 							

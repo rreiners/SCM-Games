@@ -20,12 +20,84 @@
                     <button type="button" class="btn btn-outline-secondary mx-1" disabled>PERIOD 3</button>
                     <button type="button" class="btn btn-secondary mx-1" disabled>PERIOD 4</button>
                 </ul>
-                <ul class="navbar-nav"> 
-                    <button type="button" class="btn btn-outline-warning mx-1" href="/">Instructions</button> 
+               <script>
+				function OpenInstructions(){
+							$("#Instructions").modal("show")
+						}
+				</script>
+				
+				<ul class="navbar-nav"> 
+                    <button type="button" class="btn btn-outline-warning mx-1" onclick="OpenInstructions()">Instructions</a>
                 </ul>
             </div>
         </div>
     </nav>
+	
+	<div class="modal fade" id="Instructions" tabindex="-1" >
+                            <div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel"><b>Instructions</b></h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									
+									<div class = "modal-body ps-5"> 
+										<p> Keep the following in mind:</p>
+										<p> <li>Inventory is being transferred from one period to another.</li>
+											<li>If not indicated differently, there is no other connection between the periods or influence on one another.</li> 
+											<li>No backorders or backorder penalty cost, only lost sales occur when the shipped quantity is lower than demand. </li>
+										</p>
+										<p>
+											<li>1 local supplier (US Productions) with high production cost </li> 
+											<li>1 Far East supplier (TW Productions) with lower production cost </li>
+										</p>
+										<p>
+											<li>Your order will arrive at the end of the order period. You only have to pay for the products you receive in proper quality independent of what you have ordered. </li>
+											<li>The demand of each period will be covered from your inventory as far as possible.</li>
+										</p>
+										<hr class="my-3">
+										<h4 class="my-3 h3 text-primary">Main task: Placing orders to fulfil demand (100% demand forecast accuracy) and maximize your profit</h4>
+									</div>
+							
+									<div class="container col-6 ">
+											<table class="table table-striped ">
+												<thead>
+													<tr>
+													  <th scope="col">Key data</th>
+													  <th scope="col">Price</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Selling price</td>
+														<td><nobr>$ 200</nobr></td>
+													</tr>
+													
+													<tr>
+														<td>Purchasing price at US Productions</td>
+														<td>$ 100</td>
+													</tr>
+													
+													<tr>                            
+														<td>Purchasing price at TW Productions</td>
+														<td>$ 85</td>
+													</tr>
+
+													<tr>                            
+														<td>Inventory holding cost per period</td>
+														<td>$ 15</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									
+									
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+									</div>
+								</div>
+                            </div>
+    </div>
 
     <div class="container">
 	<hr class="my-4 mt-5">

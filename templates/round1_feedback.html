@@ -102,8 +102,17 @@
             <div class="col-7">
                 <div class="container pb-4">
 					<h2> <b> FEEDBACK PERIOD 1 </b> </h2>
-					<p class="text-primary pt-4"style ="text-align: justify;"> Since TW productions is not yet aware of our special delivery requirements, unfortunately not all orders could be delivered. </p>
 					
+					<p class="text-primary"style ="text-align: justify;">
+						{% if order_TW == 0 %}
+							Gladly you <b>didn't order any parts from TW</b> - we recieved news that TW wasn't ready for our production requirements and that they would have only been able to <b>fulfill 80% of our order</b>.
+						{% else %}
+							Since TW productions is not yet aware of our special delivery requirements, unfortunately <b>not all TW orders could be delivered</b>.
+						{% endif %}
+
+					</p>
+
+
 					<p> Your orders: </p>
 					
 					<table class="table">
@@ -131,8 +140,8 @@
 					
 					<p class="pb-5"> Inventory level after receiving orders: {{ inventory }} </p>
 					
-					<p class="text-primary pt-4"style ="text-align: justify;"> Please watch this video since it contains important information from you CEO.
-					
+					<p class="text-primary pt-4"style ="text-align:center"> Please watch this video since it contains important information from you CEO.</p>
+					<iframe style="display: block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/fzBur6iQfpk" frameborder="0" allowfullscreen></iframe>
                 </div> 
             </div>
 			

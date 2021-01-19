@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 ## Notiz an Jana: wenn du an den HTML ansichten auf einem localen Server arbeiten möchtest, dann musst du 
 ## den app.secret_key auskommentieren und den string 'postgres://xjezuiuthzzkax:e66256fb0f46249a929c24c9ad581ff139a192ffa376536e152f948061afdc9f@ec2-54-216-202-161.eu-west-1.compute.amazonaws.com:5432/dbgg781qn34tnm'
-## auskommentieren und mit 'sqlite:///users.sqlite3' ersetzten dfsd
+## auskommentieren und mit 'sqlite:///users.sqlite3' ersetzten 
 
 app = Flask(__name__)
 app.secret_key = '022fde4f6f0721b9ed817c5ae18edb54307600af64379f5120b5a1553f8bab52'
@@ -47,7 +47,7 @@ class Data(db.Model):
 def home():
     
     if db.session.query(Data).first() == None:
-        for i in range(1,11):
+        for i in range(1,9):
             my_empty_data = Data(0,0,0,0,0,0,0,0,0,0,0,0,0)
             db.session.add(my_empty_data)
             db.session.commit()
@@ -57,7 +57,7 @@ def home():
 @app.route('/round1/', methods=['GET', 'POST'])
 def round1():
    
-    for i in range(1,11):    
+    for i in range(1,9):    
         my_data = Data.query.get(i)
         my_data.order_US = 0
         my_data.order_TW = 0

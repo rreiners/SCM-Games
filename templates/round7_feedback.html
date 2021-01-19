@@ -35,7 +35,19 @@
             <div class="col-7">
                 <div class="container pb-4">
 					<h2> <b> FEEDBACK PERIOD 7 </b> </h2>
-					<p class="text-primary pt-4"style ="text-align: justify;"> Unfortunately, the wildfire has reached your plant and the firefighters have not been able to push it back. If you did not build the firebreaks, all inventory left in your old storage is lost. However, the warehouse can be built up again quickly and will be available again in Period 8. Downtown Portland could be saved. </p>
+					<p class="text-primary pt-4"style ="text-align: justify;"> 
+					{% if option1 %}
+						The wildfire has reached your plant. Your decision to build the firebreaks has saved your inventory and you can go on selling products the way you are used to.
+					{% elif option2 %}
+					    Unfortunately, the wildfire has reached your plant and the firefighters have not been able to push it back. However, Downtown Portland could be saved. You are lucky to have bought the new storage location thus you are able to fulfill a large part of demand.
+					{% elif option3 %}
+					    Good choice. The wildfire has reached your plant, but your suppliers have delievered directly to you customers.
+					{% else %}
+						Unfortunately, the wildfire has reached your plant and the firefighters have not been able to push it back. Because you did not opt for any way to deal with the wildfires, all inventory left in your old storage is lost and you cannot fulfull any demand this period. 
+					{% endif %}
+					</p>
+					
+					<p class="text-primary"style ="text-align: justify;">Luckily, the warehouse can be built up quickly and will be available again in Period 8.  </p>
 					
 					<p> Your orders: </p>
 					

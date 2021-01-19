@@ -32,6 +32,16 @@
 					<h2> <b> FEEDBACK PERIOD 2 </b> </h2>
 					<p class="text-primary pt-4"style ="text-align: justify;"> TW productions is experiencing quality issues. Products with poor quality have been sorted out beforehand and do not have to be paid for. Thus, you only receive those parts of the ordered products which were of good quality. </p>
 					
+					<p class="text-primary"style ="text-align: justify;">
+					{% if option1 %}
+						By sending your quality managers you were able to decrease rejects from 60% to 20%.
+					{% elif option2 %}
+					    You have to reject 60% of products. However, the time and money you have invested in negotiating new contract terms pays off. TW Productions has to pay you a compensation for your lost sales. 
+					{% else %}
+						Unfortunately, you have to reject 60% of products.
+					{% endif %}
+					 </p>
+					
 					<p> Your orders: </p>
 					
 					<table class="table">

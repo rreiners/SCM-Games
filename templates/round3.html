@@ -220,8 +220,40 @@
 								<input type="checkbox" class="btn-check" name="overviewSuppliers" id="overview" autocomplete="off" onclick="openOverview()">
 								<label class="btn btn-outline-secondary" for="overview">Show overview over suppliers</label>   
 							</div>-->
-																	
-							<div class="modal fade" id="openOverviewSuppliers" tabindex="-1" aria-labelledby="analysisModalLabel" aria-hidden="true">
+							
+							<!-- Modal -->
+							<div class="modal fade" id="openOverviewSuppliers" tabindex="-1" role="dialog" aria-labelledby="analysisModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-large" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Supplier Overview</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									</div>
+									<div class="modal-body">
+										<div class="row row-cols-1 row-cols-md-1 g-4">
+											<div class="col">
+											  <div class="card">
+												<img src="/static/images/US Productions.png" class="card-img-top">
+											   </div>
+											  <div class="card">
+												<img src="/static/images/TW Productions.png" class="card-img-top">
+											  </div>
+											  <div class="card">
+												<img src="/static/images/CN Productions.png" class="card-img-top">
+											  </div>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									</div>
+								</div>
+								</div>
+							</div>
+
+							<!--<div class="modal fade" id="openOverviewSuppliers" tabindex="-1" aria-labelledby="analysisModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-large">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -246,7 +278,7 @@
 									</div>
 								</div>
                             </div>
-                        </div>
+                        	</div>-->
 							
 							<div class="d-grid gap-2 col-6 mx-auto">
 								<input type="checkbox" class="btn-check" name="option1" id="option1" value="5000" autocomplete="off" onclick="toggleSupplier()">

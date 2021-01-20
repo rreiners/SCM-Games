@@ -89,7 +89,7 @@
 
 													<tr>                            
 														<td>Inventory holding cost per period</td>
-														<td>$ 15</td>
+														<td>$ 5</td>
 													</tr>
 												</tbody>
 											</table>
@@ -222,15 +222,9 @@
                                 <input type="checkbox" class="btn-check" name="option2" id="option2" value="39000" autocomplete="off">
                                 <label class="btn btn-outline-primary" for="option2">Buy update for data security system for $ 39,000</label>
                             </div>
-						
-						<p class="pt-3">Finally, you have received an offer from a firm that is specialized on IT security. You can outsource IT security to them for $ 55,000 and they will then be liable for all losses you will suffer due to any cyber-attack.</p>
-                            <div class="d-grid gap-2 col-6 mx-auto">
-                                <input type="checkbox" class="btn-check" name="option3" id="option3" value="55000" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="option3">Outsource IT security for $ 55,000</label>
-                            </div>
-						</div>
+						</div>                      
 						<hr>
-
+						
 						<p> <b> How much would you like to order from each supplier? </b> </p>
                         <div class="row mb-3">
                             <label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity US Productions</label>
@@ -238,8 +232,7 @@
                                 <input name ="order_US" type="number" class="form-control" id="formGroupExampleInput1" placeholder="insert order quantity" >
                             </div>
                         </div>
-                        
-                        <div class="row mb-3">
+						<div class="row mb-3">
                             <label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity TW Productions</label>
                             <div class = "col-7">
                                 <input name ="order_TW" type="number" class="form-control" id="formGroupExampleInput2" placeholder="insert order quantity" >
@@ -285,7 +278,7 @@
                                 
                                 var revenue=Math.min((inventory+field1+field2+field3),460)*200			// ergänzen um inventar aus Vorperiode 
                                 var purchase=(field1*110)+(field2*85)+(field3*90)
-                                var holding=Math.max((inventory+field1+field2+field3-460),0)*15
+                                var holding=Math.max((inventory+field1+field2+field3-460),0)*5
                                 var profit=revenue-purchase-holding-reaction-analsis
 
                                 document.getElementById("revenue").innerHTML=formatter.format(revenue);
@@ -386,7 +379,7 @@
 							
 							<tr>                            
 								<td>Inventory holding cost per period</td>
-								<td>$ 15</td>
+								<td>$ 5</td>
                             </tr>
                         </tbody>
                     </table>

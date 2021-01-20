@@ -87,7 +87,7 @@
 
 													<tr>                            
 														<td>Inventory holding cost per period</td>
-														<td>$ 15</td>
+														<td>$ 5</td>
 													</tr>
 												</tbody>
 											</table>
@@ -246,7 +246,7 @@
                                 
                                 var revenue=Math.min((inventory+field1+field2+field3),430)*200
                                 var purchase=(field1*100)+(field2*85)+(field3*90)
-                                var holding=Math.max((inventory+field1+field2+field3-430),0)*15
+                                var holding=Math.max((inventory+field1+field2+field3-430),0)*5
                                 var profit=revenue-purchase-holding-analsis
 
                                 document.getElementById("revenue").innerHTML=formatter.format(revenue);
@@ -341,7 +341,7 @@
 							
 							<tr>                            
 								<td>Inventory holding cost per period</td>
-								<td>$ 15</td>
+								<td>$ 5</td>
                             </tr>
                         </tbody>
                     </table>

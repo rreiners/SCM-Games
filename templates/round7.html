@@ -88,7 +88,7 @@
 
 													<tr>                            
 														<td>Inventory holding cost per period</td>
-														<td>$ 15</td>
+														<td>$ 5</td>
 													</tr>
 												</tbody>
 											</table>
@@ -218,7 +218,7 @@
                                 <label class="btn btn-outline-primary" for="option1">Build firebreaks for $ 40,000</label>    
 							</div>
 						
-						<p class="pt-3">You could also use a storage location downtown which is up for sale for $ 20,000. However, you can only store 350 units there. Your building protection manager tells you, that in the past, firefighter have never allowed the wildfires to spread into downtown.</p>
+						<p class="pt-3">You could also rent a storage location downtown for this period which would cost you $ 20,000. However, you can only store 350 units there. Your building protection manager tells you, that in the past, firefighter have never allowed the wildfires to spread into downtown.</p>
                             <div class="d-grid gap-2 col-6 mx-auto">
                                 <input type="checkbox" class="btn-check" name="option2" id="option2" value="20000" autocomplete="off">
                                 <label class="btn btn-outline-primary" for="option2">Buy new storage location for $ 20,000</label>
@@ -286,7 +286,7 @@
                                 
                                 var revenue=Math.min((inventory+field1+field2+field3),400)*200			
                                 var purchase=(field1*110)+(field2*85)+(field3*90)
-                                var holding=Math.max((inventory+field1+field2+field3-400),0)*15
+                                var holding=Math.max((inventory+field1+field2+field3-400),0)*5
                                 var profit=revenue-purchase-holding-reaction
 
                                 document.getElementById("revenue").innerHTML=formatter.format(revenue);
@@ -387,7 +387,7 @@
 							
 							<tr>                            
 								<td>Inventory holding cost per period</td>
-								<td>$ 15</td>
+								<td>$ 5</td>
                             </tr>
                         </tbody>
                     </table>

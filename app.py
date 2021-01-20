@@ -94,7 +94,7 @@ def round1():
         dem_cov = min(453, receive_US + receive_TW)
         service_level = min(100,round(((receive_US + receive_TW)/453)*100))
         revenue = min(receive_US+receive_TW, 453)*200
-        purchase = (order_US*100) + (order_TW*85)
+        purchase = (receive_US*100) + (receive_TW*85)
         holding = inventory * 5
         round_profit = revenue - purchase - holding
         total_profit = round_profit

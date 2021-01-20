@@ -95,7 +95,7 @@ def round1():
         service_level = min(100,round(((receive_US + receive_TW)/453)*100))
         revenue = min(receive_US+receive_TW, 453)*200
         purchase = (receive_US*100) + (receive_TW*85)
-        holding = inventory * 15
+        holding = inventory * 5
         round_profit = revenue - purchase - holding
         total_profit = round_profit
 
@@ -155,7 +155,7 @@ def round2():
         service_level = min(100,round(((dem_cov)/370)*100))
         revenue = min(dem_cov, 370)*200
         purchase = (receive_US*100) + (receive_TW*85)
-        holding = inventory * 15
+        holding = inventory * 5
         round_profit = revenue + compensation - purchase - holding - analysis - option1 - option2
         total_profit = round_profit + profit_r1
 
@@ -220,7 +220,7 @@ def round3():
         service_level = min(100,round(((dem_cov)/480)*100))
         revenue = min(dem_cov, 480)*200
         purchase = (receive_US*100) + (receive_TW*85)+ (receive_CHN*90)
-        holding = inventory * 15
+        holding = inventory * 5
         round_profit = revenue - purchase - holding - analysis - option1 - option2
         total_profit = round_profit + profit_r2
 
@@ -277,7 +277,7 @@ def round4():
         service_level = min(100,round(((dem_cov)/520)*100))
         revenue = min(dem_cov, 520)*200
         purchase = (receive_US*100) + (receive_TW*85)+ (receive_CHN*90)
-        holding = inventory * 15
+        holding = inventory * 5
         round_profit = revenue - purchase - holding - analysis
         total_profit = round_profit + profit_r3
 
@@ -340,7 +340,7 @@ def round5():
         service_level = min(100,round(((dem_cov)/380)*100))
         revenue = min(dem_cov, 380)*200
         purchase = (receive_US*100) + (receive_TW*85)+ (receive_CHN*90)
-        holding = inventory * 15
+        holding = inventory * 5
         round_profit = revenue - purchase - holding - analysis
         total_profit = round_profit + profit_r4
 
@@ -404,7 +404,7 @@ def round6():
         service_level = min(100,round(((dem_cov)/430)*100))
         revenue = min(dem_cov, 430)*200
         purchase = (receive_US*110) + (receive_TW*85)+ (receive_CHN*90)
-        holding = inventory * 15
+        holding = inventory * 5
         round_profit = revenue - purchase - holding - analysis
         total_profit = round_profit + profit_r5
 
@@ -484,7 +484,7 @@ def round7():
         service_level = min(100,round(((dem_cov)/400)*100))
         revenue = min(dem_cov, 400)*200
         purchase = (receive_US*110) + (receive_TW*85)+ (receive_CHN*90)
-        holding = inventory * 15
+        holding = inventory * 5
         round_profit = revenue - purchase - holding - analysis - option1 - option2 - ship_cost
         total_profit = round_profit + profit_r6
 
@@ -554,7 +554,7 @@ def round8():
         service_level = min(100,round(((dem_cov)/460)*100))
         revenue = min(dem_cov, 460)*200
         purchase = (receive_US*110) + (receive_TW*85)+ (receive_CHN*90)
-        holding = inventory * 15
+        holding = inventory * 5
         round_profit = revenue - purchase - holding - analysis - option1 - option2 - option3
         total_profit = round_profit + profit_r7
 

@@ -279,7 +279,10 @@
                                 var inputElements = document.getElementsByClassName('btn-check');
                                 for(var i=0; inputElements[i]; ++i){
                                     if(inputElements[i].checked){
-                                        reaction = inputElements[i].value;
+                                        if(i == 2) {
+                                            reaction = (field1 + field2 + field3)*60;
+                                        } else {
+                                        reaction = inputElements[i].value;}
                                         break;
                                     }
                                 }

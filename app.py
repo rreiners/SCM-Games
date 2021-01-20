@@ -1,15 +1,9 @@
 from flask import Flask, request, render_template, render_template_string, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 
-## Notiz an Jana: wenn du an den HTML ansichten auf einem localen Server arbeiten möchtest, dann musst du 
-## den app.secret_key auskommentieren und den string 'postgres://xjezuiuthzzkax:e66256fb0f46249a929c24c9ad581ff139a192ffa376536e152f948061afdc9f@ec2-54-216-202-161.eu-west-1.compute.amazonaws.com:5432/dbgg781qn34tnm'
-## auskommentieren und mit 'sqlite:///users.sqlite3' ersetzten 
-
 file = open("URI.txt")
 line = file.read().replace("\n", " ")
 file.close()
-
-
 
 app = Flask(__name__)
 app.secret_key = '022fde4f6f0721b9ed817c5ae18edb54307600af64379f5120b5a1553f8bab52'
@@ -114,7 +108,7 @@ def round1():
         
         return render_template("round1_feedback.html", content = "testing",
         order_US=order_US, order_TW=order_TW, receive_US=receive_US, receive_TW=receive_TW,
-        inventory=inventory, dem_cov=dem_cov, service_level=service_level, profit=format(total_profit, ",.2f"))
+        inventory=inventory, dem_cov=dem_cov, service_level=service_level, profit= total_profit, result=round(100*round_profit/52095))
     else:
         return render_template("round1.html", content = "testing")
 
@@ -177,7 +171,7 @@ def round2():
         
         return render_template("round2_feedback.html", content = "testing", 
         order_US=order_US, order_TW=order_TW, receive_US=receive_US, receive_TW=receive_TW, compensation=format(compensation, ",.2f"),
-        inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"), option1=option1, option2=option2)
+        inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"), option1=option1, option2=option2, result=round(100*round_profit/37000))
     else:
         query_profit = db.session.query(Data.total_profit).filter_by(id = 1).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(id = 1).first()._asdict()
@@ -240,7 +234,7 @@ def round3():
         my_data.total_profit = total_profit
         db.session.commit()
         return render_template("round3_feedback.html", content = "testing",
-        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"), showCN = usedCN)
+        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"), showCN = usedCN, result=round(100*round_profit/55200))
     else:
         query_profit = db.session.query(Data.total_profit).filter_by(id = 2).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(id = 2).first()._asdict()
@@ -296,7 +290,7 @@ def round4():
         db.session.commit()
 
         return render_template("round4_feedback.html", content = "testing",
-        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"))
+        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"), result=round(100*round_profit/59800))
     else:
         query_profit = db.session.query(Data.total_profit).filter_by(id = 3).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(id = 3).first()._asdict()
@@ -361,7 +355,7 @@ def round5():
         db.session.commit()
 
         return render_template("round5_feedback.html", content = "testing",
-        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"))
+        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"), result=round(100*round_profit/43700))
     else:
         query_profit = db.session.query(Data.total_profit).filter_by(id = 4).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(id = 4).first()._asdict()
@@ -423,7 +417,7 @@ def round6():
         db.session.commit()
 
         return render_template("round6_feedback.html", content = "testing",
-        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"))
+        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"), result=round(100*round_profit/49450))
     else:
         query_profit = db.session.query(Data.total_profit).filter_by(id = 5).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(id = 5).first()._asdict()
@@ -506,7 +500,7 @@ def round7():
         db.session.commit()
 
         return render_template("round7_feedback.html", content = "testing",
-        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"),option1=option1, option2=option2, option3=ship_cost)
+        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"),option1=option1, option2=option2, option3=ship_cost, result=round(100*round_profit/22000))
     else:
         query_profit = db.session.query(Data.total_profit).filter_by(id = 6).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(id = 6).first()._asdict()
@@ -577,7 +571,7 @@ def round8():
         db.session.commit()
 
         return render_template("round8_feedback.html", content = "testing",
-        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"))
+        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"), result=round(100*round_profit/52900))
     else:
         query_profit = db.session.query(Data.total_profit).filter_by(id = 7).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(id = 7).first()._asdict()

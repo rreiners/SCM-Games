@@ -601,7 +601,7 @@ def end():
     profit_r8 = int(query_profit.get("total_profit"))
     inventory_r8 = int(query_inventory.get("inventory"))
     
-    return render_template("result.html",profit_r8=profit_r8,inventory_r8=inventory_r8)
+    return render_template("result.html",inventory_r8=inventory_r8,profit_r8=format(profit_r8, ",.2f"))
 
 
 with app.app_context():

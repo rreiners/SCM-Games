@@ -107,7 +107,7 @@
             <div class="col-7">
                 <div class="container pb-4">
 					<h2> <b> FEEDBACK PERIOD 6 </b> </h2>
-					<p class="text-primary pt-4"style ="text-align: justify;"> The purchasing price was actually increased by US Productions and is now $ 110 instead of $ 100 for the rest of the game. </p>
+					<p class="text-primary pt-4"style ="text-align: justify;"> US Productions has indeed decided to <b>increase its purchasing price</b>. The price will now be <nobr>$ 110</nobr> instead of $ 100 for the rest of the game. </p>
 					
 					<p> Your orders: </p>
 					
@@ -130,12 +130,14 @@
 							<th scope="row">TW Productions</th>
 							<td>{{ order_TW }}</td>
 							<td>{{ receive_TW }}</td>
-						</tr>	
-						<tr>
-							<th scope="row">CN Productions</th>
-							<td>{{ order_CHN }}</td>
-							<td>{{ receive_CHN }}</td>
-						</tr>	
+						</tr>
+						{% if showCN %}
+							<tr>
+								<th scope="row">CN Productions</th>
+								<td>{{ order_CHN }}</td>
+								<td>{{ receive_CHN }}</td>
+							</tr>	
+						{% endif %}
 						</tbody>
 					</table>
 					

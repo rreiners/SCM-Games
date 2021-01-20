@@ -103,19 +103,26 @@
             <div class="col-7">
                 <div class="container pb-4">
 					<h2> <b> FEEDBACK PERIOD 2 </b> </h2>
-					<p class="text-primary pt-4"style ="text-align: justify;"> TW productions is experiencing quality issues. Products with poor quality have been sorted out beforehand and do not have to be paid for. Thus, you only receive those parts of the ordered products which were of good quality. </p>
 					
-					<p class="text-primary"style ="text-align: justify;">
-					{% if option1 %}
-						By sending your quality managers you were able to decrease rejects from 60% to 20%.
-					{% elif option2 %}
-					    You have to reject 60% of products. However, the time and money you have invested in negotiating new contract terms pays off. TW Productions has to pay you a compensation for your lost sales. 
-					{% else %}
-						Unfortunately, you have to reject 60% of products.
+					
+					<p class="text-primary pt-4"style ="text-align: justify;">
+					{% if order_TW==0 %}
+						Luckily, you did not place any orders with TW Productions. They are currently experiencing <b>quality issues</b> and would only have been able to deliver 60% of your order.
+					{%else%}	
+						<div class="text-primary"style ="text-align: justify;"> <p>TW Productions is experiencing <b>quality issues</b>. Products with poor quality have been sorted out beforehand and do not have to be paid for. Thus, you only receive those parts of the ordered products which were of good quality. </p>
+						
+						{% if option1 %}
+							By sending your quality managers you were able to decrease rejects from 60% to 20%.
+						{% elif option2 %}
+							Thus, you only received 40% of products. However, the time and money you have invested in negotiating new contract terms pays off. TW Productions has paid you a compensation for your lost sales. 
+						{% else %}
+							Thus, you only received 40% of products.
+						{% endif %}
+						</div>
 					{% endif %}
 					 </p>
 					
-					<p> Your orders: </p>
+					<p class="pt-2"> Your orders: </p>
 					
 					<table class="table">
 						<thead>

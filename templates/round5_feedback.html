@@ -131,12 +131,14 @@
 							<th scope="row">TW Productions</th>
 							<td>{{ order_TW }}</td>
 							<td>{{ receive_TW }}</td>
-						</tr>	
-						<tr>
-							<th scope="row">CN Productions</th>
-							<td>{{ order_CHN }}</td>
-							<td>{{ receive_CHN }}</td>
-						</tr>	
+						</tr>
+						{% if showCN %}						
+							<tr>
+								<th scope="row">CN Productions</th>
+								<td>{{ order_CHN }}</td>
+								<td>{{ receive_CHN }}</td>
+							</tr>	
+						{% endif %}
 						</tbody>
 					</table>
 					

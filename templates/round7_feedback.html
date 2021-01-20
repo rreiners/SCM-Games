@@ -112,7 +112,7 @@
 					{% if option1 %}
 						The wildfire has reached your plant. Your decision to build the firebreaks has saved your inventory and you can go on selling products the way you are used to.
 					{% elif option2 %}
-					    Unfortunately, the wildfire has reached your plant and the firefighters have not been able to push it back. However, Downtown Portland could be saved. You are lucky to have bought the new storage location thus you are able to fulfill a large part of demand.
+					    Unfortunately, the wildfire has reached your plant and the firefighters have not been able to push it back. However, Downtown Portland could be saved. You are lucky to have bought the new storage location thus you are able to fulfill a large part of this period's demand.
 					{% elif option3 %}
 					    Good choice. The wildfire has reached your plant, but your suppliers have delievered directly to you customers.
 					{% else %}
@@ -143,12 +143,14 @@
 							<th scope="row">TW Productions</th>
 							<td>{{ order_TW }}</td>
 							<td>{{ receive_TW }}</td>
-						</tr>	
-						<tr>
-							<th scope="row">CN Productions</th>
-							<td>{{ order_CHN }}</td>
-							<td>{{ receive_CHN }}</td>
-						</tr>	
+						</tr>
+						{% if showCN %}						
+							<tr>
+								<th scope="row">CN Productions</th>
+								<td>{{ order_CHN }}</td>
+								<td>{{ receive_CHN }}</td>
+							</tr>	
+						{% endif %}
 						</tbody>
 					</table>
 					

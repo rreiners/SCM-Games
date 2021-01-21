@@ -247,13 +247,17 @@ def round3():
 @app.route('/round4/', methods=['GET', 'POST'])
 def round4():
 
+    
+
     if request.method == 'POST':
 
         # get inventory and profit from database
         query_profit = db.session.query(Data.total_profit).filter_by(id = 3).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(id = 3).first()._asdict()
+        query_CHNinstall = db.session.query(Data.measure1).filter_by(id = 3).first()._asdict()
         profit_r3 = int(query_profit.get("total_profit"))
         inventory_r3 = int(query_inventory.get("inventory"))
+        CHNinstall = query_CHNinstall.get("measure1")
         
         # get data from form 
         analysis = int(request.form['analysis_purchase'] or 0)
@@ -288,9 +292,14 @@ def round4():
         my_data.round_profit = round_profit
         my_data.total_profit = total_profit
         db.session.commit()
+        
+        if CHNinstall == 5000:
+            usedCHN = True
+        else:
+            usedCHN = False
 
         return render_template("round4_feedback.html", content = "testing",
-        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"), result=round(100*round_profit/59800))
+        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"), result=round(100*round_profit/59800),showCHN = usedCHN)
     else:
         query_profit = db.session.query(Data.total_profit).filter_by(id = 3).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(id = 3).first()._asdict()
@@ -298,7 +307,7 @@ def round4():
         profit_r3 = query_profit.get("total_profit")
         inventory_r3 = query_inventory.get("inventory")
         CHNinstall = query_CHNinstall.get("measure1")
-
+        
         if CHNinstall == 5000:
             usedCHN = True
         else:
@@ -316,8 +325,10 @@ def round5():
         # get inventory and profit from database                                                                    ##### hier habe ich aufgehört 
         query_profit = db.session.query(Data.total_profit).filter_by(id = 4).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(id = 4).first()._asdict()
+        query_CHNinstall = db.session.query(Data.measure1).filter_by(id = 3).first()._asdict()
         profit_r4 = int(query_profit.get("total_profit"))
         inventory_r4 = int(query_inventory.get("inventory"))
+        CHNinstall = query_CHNinstall.get("measure1")
         
         # get data from form 
         analysis = int(request.form['analysis_purchase'] or 0)
@@ -353,9 +364,14 @@ def round5():
         my_data.round_profit = round_profit
         my_data.total_profit = total_profit
         db.session.commit()
+        
+        if CHNinstall == 5000:
+            usedCHN = True
+        else:
+            usedCHN = False
 
         return render_template("round5_feedback.html", content = "testing",
-        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"), result=round(100*round_profit/43700))
+        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"), result=round(100*round_profit/43700),showCHN = usedCHN)
     else:
         query_profit = db.session.query(Data.total_profit).filter_by(id = 4).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(id = 4).first()._asdict()
@@ -380,8 +396,10 @@ def round6():
         # get inventory and profit from database                                                                    
         query_profit = db.session.query(Data.total_profit).filter_by(id = 5).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(id = 5).first()._asdict()
+        query_CHNinstall = db.session.query(Data.measure1).filter_by(id = 3).first()._asdict()
         profit_r5 = int(query_profit.get("total_profit"))
         inventory_r5 = int(query_inventory.get("inventory"))
+        CHNinstall = query_CHNinstall.get("measure1")
         
         # get data from form 
         analysis = int(request.form['analysis_purchase'] or 0)
@@ -415,9 +433,14 @@ def round6():
         my_data.round_profit = round_profit
         my_data.total_profit = total_profit
         db.session.commit()
+        
+        if CHNinstall == 5000:
+            usedCHN = True
+        else:
+            usedCHN = False
 
         return render_template("round6_feedback.html", content = "testing",
-        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"), result=round(100*round_profit/49450))
+        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"), result=round(100*round_profit/49450),showCHN = usedCHN)
     else:
         query_profit = db.session.query(Data.total_profit).filter_by(id = 5).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(id = 5).first()._asdict()
@@ -441,8 +464,10 @@ def round7():
         # get inventory and profit from database                                                                    
         query_profit = db.session.query(Data.total_profit).filter_by(id = 6).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(id = 6).first()._asdict()
+        query_CHNinstall = db.session.query(Data.measure1).filter_by(id = 3).first()._asdict()
         profit_r6 = int(query_profit.get("total_profit"))
         inventory_r6 = int(query_inventory.get("inventory"))
+        CHNinstall = query_CHNinstall.get("measure1")
         
         # get data from form 
         analysis = int(request.form['analysis_purchase'] or 0)
@@ -498,9 +523,14 @@ def round7():
         my_data.round_profit = round_profit
         my_data.total_profit = total_profit
         db.session.commit()
+        
+        if CHNinstall == 5000:
+            usedCHN = True
+        else:
+            usedCHN = False
 
         return render_template("round7_feedback.html", content = "testing",
-        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"),option1=option1, option2=option2, option3=ship_cost, result=round(100*round_profit/22000))
+        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"),option1=option1, option2=option2, option3=ship_cost, result=round(100*round_profit/22000),showCHN = usedCHN)
     else:
         query_profit = db.session.query(Data.total_profit).filter_by(id = 6).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(id = 6).first()._asdict()
@@ -525,8 +555,10 @@ def round8():
         # get inventory and profit from database                                                                    
         query_profit = db.session.query(Data.total_profit).filter_by(id = 7).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(id = 7).first()._asdict()
+        query_CHNinstall = db.session.query(Data.measure1).filter_by(id = 3).first()._asdict()
         profit_r7 = int(query_profit.get("total_profit"))
         inventory_r7 = int(query_inventory.get("inventory"))
+        CHNinstall = query_CHNinstall.get("measure1")
         
         # get data from form 
         analysis = int(request.form['analysis_purchase'] or 0)
@@ -569,9 +601,14 @@ def round8():
         my_data.round_profit = round_profit
         my_data.total_profit = total_profit
         db.session.commit()
+        
+        if CHNinstall == 5000:
+            usedCHN = True
+        else:
+            usedCHN = False
 
         return render_template("round8_feedback.html", content = "testing",
-        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"), result=round(100*round_profit/52900))
+        order_US=order_US, order_TW=order_TW, order_CHN=order_CHN, receive_US=receive_US, receive_TW=receive_TW, receive_CHN=receive_CHN, inventory=inventory, dem_cov=dem_cov, service_level=service_level, round_profit=format(round_profit, ",.2f"), total_profit=format(total_profit, ",.2f"), result=round(100*round_profit/52900),showCHN = usedCHN)
     else:
         query_profit = db.session.query(Data.total_profit).filter_by(id = 7).first()._asdict()
         query_inventory = db.session.query(Data.inventory).filter_by(id = 7).first()._asdict()

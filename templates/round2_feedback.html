@@ -109,7 +109,7 @@
 					{% if order_TW==0 %}
 						Luckily, you did not place any orders with TW Productions. They are currently experiencing <b>quality issues</b> and would only have been able to deliver 60% of your order.
 					{%else%}	
-						<div class="text-primary"style ="text-align: justify;"> <p>TW Productions is experiencing <b>quality issues</b>. Products with poor quality have been sorted out beforehand and do not have to be paid for. Thus, you only receive those parts of the ordered products which were of good quality. </p>
+						<div class="text-primary"style ="text-align: justify;"> <p>TW Productions is experiencing <b>quality issues</b>. Products with poor quality had to be sorted out beforehand but you still have to pay for them. You can only sell the products which were of good quality. </p>
 						
 						{% if option1 %}
 							By sending your quality managers you were able to decrease rejects from 60% to 20%.
@@ -165,7 +165,10 @@
 						Demand: 370 <br>
 						Demand covered: {{ dem_cov }} <br>
 						Service level: {{ service_level }}% 
-						<hr> Compensation: ${{ compensation }}
+						
+						{% if compensation!="0.00" %}
+							<hr> Compensation: ${{ compensation }}
+						{%endif%} 
 					</div>
 					<hr>
 				</div>			

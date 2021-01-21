@@ -109,7 +109,7 @@
 					<p class="pt-5 fs-4"> Demand for Period 4: <b> 520</b> </p>
 					
 					<div style ="text-align: justify;" class= "pb-3">
-						<p>  Meteorologists are warning about a slightly increased <b>hurricane risk </b>in Asia. The hurricane is currently raging up the East Coast and could potentially reach China and Taiwan in Period 5. </p>
+						<p>  Meteorologists are warning about a slightly increased <b>hurricane risk </b>in Asia. The hurricane is currently raging up the East Coast and could potentially reach China and Taiwan in Period 5. This might delay all deliveries from your Asian suppliers.</p>
 						
 						<p class= "pb-3"> You might want to consider taking this into account when placing your orders for the next periods. </p>
 						
@@ -364,9 +364,11 @@
 									var showSupplier = "{{ showCHN }}";
 									if (showSupplier == "True"){
 										$("#step-1").show();
+										$("#step-2").show();
 									}
 									else {
 										$("#step-1").hide();
+										$("#step-2").hide();
 										$("#formGroupExampleInput3").val("0");
 									}
 								}

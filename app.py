@@ -247,8 +247,6 @@ def round3():
 @app.route('/round4/', methods=['GET', 'POST'])
 def round4():
 
-    
-
     if request.method == 'POST':
 
         # get inventory and profit from database
@@ -348,8 +346,6 @@ def round5():
         holding = inventory * 5
         round_profit = revenue - purchase - holding - analysis
         total_profit = round_profit + profit_r4
-
-        print(profit_r4)
 
         # access Database row 3 and update Database
         my_data = Data.query.get(5)

@@ -186,9 +186,28 @@
                             </tr>
 							
 							<tr>
-								<td>Percentage of max. achievable Profit:</td>
+								<style>
+									.good 		{color: rgb(9, 139, 9);}
+									.mediocre	{color: rgb(203, 218, 77);}
+									.medium		{color: rgb(255, 217, 0);}
+									.notgood 	{color: rgb(252, 156, 13);}
+									.bad 		{color: rgb(175, 0, 0);}
+								</style>
+								<td>% of max. achievable Profit:</td>
 								<td>
-									<span1>{{'%0.0f'| format(result|float)}}%</span1>
+									<span1 	{% if result >= 80 %} 
+												class="good"
+											{% elif result >= 60 %}
+												class="mediocre"
+											{% elif result >= 40 %}
+												class="medium"
+											{% elif result >= 20 %}
+												class="notgood"
+											{% else %}
+												class="bad"
+											{% endif %}>
+									{{'%0.0f'| format(result|float)}}%
+									</span1>
 								</td>								
                             </tr>
 							

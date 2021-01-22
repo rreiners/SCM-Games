@@ -11,7 +11,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid"> 
             <a class="navbar-brand">
-                <img src="/static/images/logistics.svg" width="30" height="30" alt="">
+                <img src="/static/images/sick_skateboards_blue.svg" width="250px" class="ps-5">
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto">
@@ -48,18 +48,18 @@
 										<p> Keep the following in mind:</p>
 										<p> <li>Inventory is being transferred from one period to another.</li>
 											<li>If not indicated differently, there is no other connection between the periods or influence on one another.</li> 
-											<li>No backorders or backorder penalty cost, only lost sales occur when the shipped quantity is lower than demand. </li>
+											<li>No backorders or backorder penalty cost, only lost sales (demand that could not be fulfilled will not be transferred into future periods) occur when the shipped quantity is lower than the demand. </li>
 										</p>
 										<p>
 											<li>1 local supplier (US Productions) with high production cost </li> 
 											<li>1 Far East supplier (TW Productions) with lower production cost </li>
 										</p>
 										<p>
-											<li>Your order will arrive at the end of the order period.</li>
+											<li>Your orders will arrive at the end of the order period.</li>
 											<li>The demand of each period will be covered from your inventory as far as possible.</li>
 										</p>
 										<hr class="my-3">
-										<h4 class="my-3 h3 text-primary">Main task: Placing orders to fulfil demand (100% demand forecast accuracy) and maximize your profit</h4>
+										<h4 class="my-3 h3 text-primary">Main task: Placing orders to fulfil demand (100% demand forecast accuracy) and to maximize your profit</h4>
 									</div>
 							
 									<div class="container col-6 ">
@@ -120,7 +120,7 @@
                             });
                           });
                         </script>
-						<p>  You are watching the news on TV when you suddenly hear a familiar name. The news reporter is talking about <b>wildfires</b> which are quickly moving towards Portland. You are shocked because last time you heard about them, it was just a small outbreak in Southern California. You immediately get on the phone with your building protection manager.</p>
+						<p>  You are watching the news on TV when you suddenly hear a familiar name. The news reporter is talking about <b>wildfires</b> which are quickly moving towards your warehouse, which is were you store all skateboards before sending them to your customers. You are shocked because last time you heard about them, it was just a small outbreak in Southern California. You immediately get on the phone with your building protection manager.</p>
 						
 						<p class="pb-3">  If your warehouse burns down, you will <b>lose all your inventory</b> and you will <b>not be able to receive any shipments in this period</b>. You will, however, be able to fully use your warehouse again from Period 8 onwards.</p>
 						
@@ -210,7 +210,7 @@
 						<form method="post">
 						<input type="hidden" id ="analysis_purchase" name="analysis_purchase"></input> 
 						
-						<p class="text-primary pt-4"style ="text-align: justify;"> Please note that you will not have enough time to install more than one option for protection. Thus, in this round you can only choose one out of the three options given below. </p>
+						<p class="text-primary pt-4"style ="text-align: justify;"> Please note that you will not have enough time to install more than one option for protection. Thus, in this round, you can only choose one out of the three options given below. </p>
 
 						<p class="pt-3">Your building protection manager tells you not to worry. They can install firebreaks for $ 40,000  which will make sure that the fire cannot hit your company. </p>
                             <div class="d-grid gap-2 col-6 mx-auto">
@@ -218,13 +218,13 @@
                                 <label class="btn btn-outline-primary" for="option1">Build firebreaks for $ 40,000</label>    
 							</div>
 						
-						<p class="pt-3">You could also rent a storage location downtown for this period which would cost you $ 20,000. However, you can only store 350 units there. Your building protection manager tells you, that in the past, firefighter have never allowed the wildfires to spread into downtown.</p>
+						<p class="pt-3">You could also rent a storage location downtown for this period which would cost you $ 20,000. However, you can only store 350 units there. Your building protection manager tells you that in the past, firefighters have never allowed the wildfires to spread into downtown.</p>
                             <div class="d-grid gap-2 col-6 mx-auto">
                                 <input type="checkbox" class="btn-check" name="option2" id="option2" value="20000" autocomplete="off">
                                 <label class="btn btn-outline-primary" for="option2">Buy new storage location for $ 20,000</label>
                             </div>
 						
-						<p class="pt-3">You call your suppliers and ask them if they can deliver the products directly to the customer. They all agree but not without being paid for it. They will charge you additional $ 60 per piece for storage and delivery if you decide to ship the products from the suppliers directly to your customers without ever putting them into your own storage. However, you can only use this option this period and your suppliers will only serve customer demand. All orders that exceed customer demand have to be paid for (regular price) but cannot be delivered to your warehouse.</p>
+						<p class="pt-3">You call your suppliers and ask them if they can deliver the products directly to the customer. They will charge you additional $ 60 per piece for storage and delivery if you decide to ship the products from the suppliers directly to your customers without ever putting them into your own storage. However, you can only use this option this period and your suppliers will only serve customer demand. All orders that exceed customer demand have to be paid for (regular price) but cannot be delivered to your warehouse.</p>
                             <div class="d-grid gap-2 col-6 mx-auto">
                                 <input type="checkbox" class="btn-check" name="option3" id="option3" value="True" autocomplete="off">
                                 <label class="btn btn-outline-primary" for="option3">Ship products directly from supplier to customers for additional $ 60 per piece</label>

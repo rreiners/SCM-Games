@@ -11,7 +11,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid"> 
             <a class="navbar-brand">
-                <img src="/static/images/logistics.svg" width="30" height="30" alt="">
+                <img src="/static/images/sick_skateboards_blue.svg" width="250px" class="ps-5">
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto">
@@ -48,18 +48,18 @@
 										<p> Keep the following in mind:</p>
 										<p> <li>Inventory is being transferred from one period to another.</li>
 											<li>If not indicated differently, there is no other connection between the periods or influence on one another.</li> 
-											<li>No backorders or backorder penalty cost, only lost sales occur when the shipped quantity is lower than demand. </li>
+											<li>No backorders or backorder penalty cost, only lost sales (demand that could not be fulfilled will not be transferred into future periods) occur when the shipped quantity is lower than the demand. </li>
 										</p>
 										<p>
 											<li>1 local supplier (US Productions) with high production cost </li> 
 											<li>1 Far East supplier (TW Productions) with lower production cost </li>
 										</p>
 										<p>
-											<li>Your order will arrive at the end of the order period.</li>
+											<li>Your orders will arrive at the end of the order period.</li>
 											<li>The demand of each period will be covered from your inventory as far as possible.</li>
 										</p>
 										<hr class="my-3">
-										<h4 class="my-3 h3 text-primary">Main task: Placing orders to fulfil demand (100% demand forecast accuracy) and maximize your profit</h4>
+										<h4 class="my-3 h3 text-primary">Main task: Placing orders to fulfil demand (100% demand forecast accuracy) and to maximize your profit</h4>
 									</div>
 							
 									<div class="container col-6 ">
@@ -110,17 +110,15 @@
 					<h2> <b> FEEDBACK PERIOD 7 </b> </h2>
 					<p class="text-primary pt-4"style ="text-align: justify;"> 
 					{% if option1 %}
-						The wildfire has reached your plant. Your decision to build the firebreaks has saved your inventory and you can go on selling products the way you are used to.
+						The wildfires have reached your warehouse. Your decision to build the firebreaks has saved your inventory and you can go on selling products the way you are used to.
 					{% elif option2 %}
-					    Unfortunately, the wildfire has reached your plant and the firefighters have not been able to push it back. However, Downtown Portland could be saved. You are lucky to have bought the new storage location thus you are able to fulfill a large part of this period's demand.
+					    Unfortunately, the wildfires have reached your warehouse and the firefighters have not been able to push it back. However, Downtown Portland could be saved. You are lucky to have rented the new storage location. Thus you are able to fulfil a large part of this period's demand.
 					{% elif option3 %}
-					    Good choice. The wildfire has reached your plant, but your suppliers have delievered directly to your customers.
+					    Good choice. The wildfires have reached your warehouse, but your suppliers have delievered the skateboards directly to your customers. 
 					{% else %}
-						Unfortunately, the wildfire has reached your plant and the firefighters have not been able to push it back. Because you did not opt for any way to deal with the wildfires, all inventory left in your old storage is lost and you cannot fulfull any demand this period. 
+						Unfortunately, the wildfires have reached your warehouse and the firefighters have not been able to push it back. Because you did not opt for any way to deal with the wildfires, all inventory left in your old storage is lost and you cannot fulfil any demand this period. 
 					{% endif %}
 					</p>
-					
-					<p class="text-primary"style ="text-align: justify;">Luckily, the warehouse can be built up quickly and will be available again in Period 8.  </p>
 					
 					<p> Your orders: </p>
 					
@@ -193,7 +191,7 @@
 									.notgood 	{color: rgb(252, 156, 13);}
 									.bad 		{color: rgb(175, 0, 0);}
 								</style>
-								<td>% of max. achievable Profit:</td>
+								<td>% of max. achievable profit:</td>
 								<td>
 									<span1 	{% if result >= 80 %} 
 												class="good"

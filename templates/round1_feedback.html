@@ -140,7 +140,11 @@
 					<p class="pb-5"> Inventory level after receiving orders: <b>{{ inventory }}</b></p>
 					
 					<p class="text-primary pt-4"style ="text-align:center"> Please watch this video since it contains important information from you CEO.</p>
-					<iframe style="display: block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/fzBur6iQfpk" frameborder="0" allowfullscreen></iframe>
+					{% if order_TW == 0 %}
+						<iframe style="display: block; margin: auto;" width="560" height="315" src="https://youtu.be/AxgKn3ww_tk" frameborder="0" allowfullscreen></iframe>
+					{% else %}
+						<iframe style="display: block; margin: auto;" width="560" height="315" src="https://youtu.be/NjN9weZ_Krw" frameborder="0" allowfullscreen></iframe>
+					{% endif %}
                 </div> 
             </div>
 			

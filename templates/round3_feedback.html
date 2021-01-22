@@ -44,11 +44,11 @@
 										<p> Keep the following in mind:</p>
 										<p> <li>Inventory is being transferred from one period to another.</li>
 											<li>If not indicated differently, there is no other connection between the periods or influence on one another.</li> 
-											<li>No backorders or backorder penalty cost, only lost sales (demand that could not be fulfilled will not be transferred into future periods)occur when the shipped quantity is lower than the demand. </li>
+											<li>No backorders or backorder penalty cost, only lost sales (demand that could not be fulfilled will not be transferred into future periods)occur when your received order quantity plus your inventory are lower than the demand. </li>
 										</p>
 										<p>
 											<li>1 local supplier (US Productions) with high production cost </li> 
-											<li>1 Far East supplier (TW Productions) with lower production cost </li>
+											<li>1 foreign supplier (TW Productions) with lower production cost </li>
 										</p>
 										<p>
 											<li>Your orders will arrive at the end of the order period.</li>
@@ -141,7 +141,7 @@
 						</tbody>
 					</table>
 					
-					<p class="pb-5"> Inventory level after receiving orders: {{ inventory }}
+					<p class="pb-5"> Inventory level after fulfilling demand: {{ inventory }}
 					
                 </div> 
             </div>

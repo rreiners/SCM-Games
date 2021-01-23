@@ -1,5 +1,7 @@
 from flask import Flask, request, render_template, render_template_string, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt 
 
 file = open("URI.txt")

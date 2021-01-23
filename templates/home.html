@@ -1,0 +1,86 @@
+<!doctype html> 
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>SCM Risk Game</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand">
+                <img src="/static/images/sick_skateboards_blue.svg" width="250px" class="ps-5">
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-4">      
+        <h4 class="my-3 h3"> <b>You are a member of the procurement leadership team of the sick_skateboards Inc. and your task is to maximize the firm's profit!</b></h4>
+        <hr class="my-3">
+        <iframe style="display: block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/qjmBeGfy4M0" frameborder="0" allowfullscreen></iframe>
+        <hr class="my-3">
+        <p class="font-weight-bold">Keep the following in mind:</p>
+            <p> <li>Inventory is being transferred from one period to another.</li>
+				<li>If not indicated differently, there is no other connection between the periods or influence on one another.</li> 
+				<li>No backorders or backorder penalty cost, only lost sales (demand that could not be fulfilled will not be transferred into future periods) occur when your received order quantity plus your inventory are lower than the demand. </li>
+			</p>
+			<p>
+				<li>1 local supplier (US Productions) with high production cost </li> 
+				<li>1 foreign supplier (TW Productions) with lower production cost </li>
+			</p>
+			<p>
+				<li>Your orders will arrive at the end of the order period.</li>
+				<li>The demand of each period will be covered from your inventory as far as possible.</li>
+				
+				<div div class="container pt-3 col-6 ps-4">
+					<img src="/static/images/periods.jpeg" width="600px">
+				</div>
+			</p>
+            <hr class="my-3">
+            <h4 class="my-3 h3 text-primary">Main task: Placing orders to fulfil demand (100% demand forecast accuracy) and to maximize your profit</h4>
+
+    </div>
+	
+	<div class="container pt-5 col-4 ">
+                    <table class="table table-striped ">
+                        <thead>
+							<tr>
+							  <th scope="col">Key data</th>
+							  <th scope="col">Price</th>
+							</tr>
+						</thead>
+                        <tbody>
+                            <tr>
+								<td>Selling price</td>
+								<td>$ 200</td>
+                            </tr>
+							
+                            <tr>
+								<td>Purchasing price at US Productions</td>
+								<td>$ 100</td>
+                            </tr>
+							
+                            <tr>                            
+								<td>Purchasing price at TW Productions</td>
+								<td>$ 85</td>
+                            </tr>
+
+							<tr>                            
+								<td>Inventory holding cost per period</td>
+								<td>$ 5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+    
+	<div class="container d-md-flex pt-5 mb-5 justify-content-md-end">
+        <a href="/round1" class="btn btn-primary btn-md"" role="button">Got it!</a>   
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,5 +1,7 @@
 from flask import Flask, request, render_template, render_template_string, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
+import base64
+from io import BytesIO
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt 
@@ -631,48 +633,47 @@ def end():
     max_profits = [52095, 37000, 55200, 59800, 43700, 49450, 22000, 52900]
     results = [min(1,i / j) for i, j in zip(all_profits, max_profits)]
 
-    def results_pgn(results):
-        plt.figure(figsize=(10,6))
-        plt.style.use('ggplot')
+    plt.figure(figsize=(10,6))
+    plt.style.use('ggplot')
 
-        x = ['Round 1', 'Round 2', 'Round 3', 'Round 4', 'Round 5', 'Round 6', 'Round 7', 'Round 8']
-        values = results
+    x = ['Round 1', 'Round 2', 'Round 3', 'Round 4', 'Round 5', 'Round 6', 'Round 7', 'Round 8']
+    values = results
 
-        colors = []
-        for i in range(8):
-            if values[i] >= 0.8:
-                colors.append('darkgreen')
-            elif values[i] >= 0.6:
-                colors.append('limegreen')
-            elif values[i] >= 0.4:
-                colors.append('gold')
-            elif values[i] >= 0.2:
-                colors.append('orange')
-            else:
-                colors.append('red')
-            
+    colors = []
+    for i in range(8):
+        if values[i] >= 0.8:
+            colors.append('darkgreen')
+        elif values[i] >= 0.6:
+            colors.append('limegreen')
+        elif values[i] >= 0.4:
+            colors.append('gold')
+        elif values[i] >= 0.2:
+            colors.append('orange')
+        else:
+            colors.append('red')
+        
 
-        x_pos = [i for i, _ in enumerate(x)]
+    x_pos = [i for i, _ in enumerate(x)]
 
-        plt.bar(x_pos, values, color=colors)
-        plt.ylabel("Percent of max. achievable profit")
-        plt.title("Results")
+    plt.bar(x_pos, values, color=colors)
+    plt.ylabel("Percent of max. achievable profit")
+    plt.title("Results")
 
-        plt.xticks(x_pos, x)
-        vals = [0, 0.2, 0.4, 0.6, 0.8, 1]
-        plt.yticks(vals,['{:,.2%}'.format(x) for x in vals])
+    plt.xticks(x_pos, x)
+    vals = [0, 0.2, 0.4, 0.6, 0.8, 1]
+    plt.yticks(vals,['{:,.2%}'.format(x) for x in vals])
 
-        plt.savefig('static/images/result.png')
-    
-    results_pgn(results)
+    buf = BytesIO()
+    plt.savefig(buf, format="png")
+    data = base64.b64encode(buf.getbuffer()).decode("ascii")
+    plt.close()
     
     query_profit = db.session.query(Data.total_profit).filter_by(id = 8).first()._asdict()
     query_inventory = db.session.query(Data.inventory).filter_by(id = 8).first()._asdict()
     profit_r8 = int(query_profit.get("total_profit"))
     inventory_r8 = int(query_inventory.get("inventory"))
     
-    return render_template("result.html",inventory_r8=inventory_r8,profit_r8=format(profit_r8, ",.2f"))
-
+    return render_template("result.html",data=data, inventory_r8=inventory_r8,profit_r8=format(profit_r8, ",.2f"))
 
 with app.app_context():
     db.create_all()

@@ -666,13 +666,6 @@ def end():
     
     results_pgn(results)
     
-    
-
-
-   
-    
-    
-    
     query_profit = db.session.query(Data.total_profit).filter_by(id = 8).first()._asdict()
     query_inventory = db.session.query(Data.inventory).filter_by(id = 8).first()._asdict()
     profit_r8 = int(query_profit.get("total_profit"))

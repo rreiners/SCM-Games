@@ -110,16 +110,20 @@
 					
 					<p class="text-primary pt-4"style ="text-align: justify;">
 					{% if order_TW==0 %}
-						Luckily, you did not place any orders with TW Productions. They are currently experiencing <b>quality issues</b> and would have been able to only deliver 60% of your order.
+						Luckily, you did not place any orders with TW Productions. They are currently experiencing <b>quality issues</b> and we are estimating that <b>only 40%</b> of the paid for skateboards would have met our quality standards.
 					{%else%}	
 						<div class="text-primary"style ="text-align: justify;"> <p>TW Productions is experiencing <b>quality issues</b>. Products with poor quality had to be sorted out beforehand, but you still have to pay for them. You can only sell the products which were of good quality. </p>
 						
 						{% if option1 %}
 							By sending your quality managers you were able to decrease rejects from 60% to 20%.
 						{% elif option2 %}
-							Thus, you only received 40% of the ordered products. However, the time and money you have invested in negotiating new contract terms pays off. TW Productions has paid you a compensation for your lost sales. 
+							{% if compensation>="5000.00" %}
+								Only <b>40% of the bought skateboards</b> met our quality standards. However, the time and money you have invested in negotiating <b>new contract terms paid off</b>. The recieved compensation exceeded the negotiation expenditures! 
+							{% else %}
+							Only <b>40% of the bought skateboards</b> met our quality standards. Unfortunately, the time and money you have invested in negotiating <b>new contract terms didn't pay off</b>. The expenditures of negotiation exceeded the compensation we recieved!
+							{% endif %} 
 						{% else %}
-							Thus, you only received 40% of the ordered products.
+							Only <b>40% of the bought skateboards</b> met our quality standards
 						{% endif %}
 						</div>
 					{% endif %}

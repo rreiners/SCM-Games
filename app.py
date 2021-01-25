@@ -48,37 +48,39 @@ class Data(db.Model):
         self.round_profit = round_profit
         self.total_profit = total_profit
 
-@app.route('/')                
+@app.route('/', methods=['GET', 'POST'])                
 def home():
-    
     if db.session.query(Data).first() == None:
         for i in range(1,9):
             my_empty_data = Data(0,0,0,0,0,0,0,0,0,0,0,0,0)
             db.session.add(my_empty_data)
             db.session.commit()
-    
-    return render_template("home.html", content = "testing")
+
+    if request.method == 'POST':
+        for i in range(1,9):    
+            my_data = Data.query.get(i)
+            my_data.order_US = 0
+            my_data.order_TW = 0
+            my_data.order_CHN = 0
+            my_data.receive_US = 0
+            my_data.receive_TW = 0
+            my_data.receive_CHN = 0
+            my_data.analysis = 0
+            my_data.measure1 = 0
+            my_data.measure2 = 0
+            my_data.measure3 = 0
+            my_data.inventory = 0
+            my_data.round_profit = 0
+            my_data.total_profit = 0
+            db.session.commit()
+        
+        return redirect(url_for('round1'))
+    else:
+        return render_template("home.html", content = "testing")
 
 @app.route('/round1/', methods=['GET', 'POST'])
 def round1():
    
-    for i in range(1,9):    
-        my_data = Data.query.get(i)
-        my_data.order_US = 0
-        my_data.order_TW = 0
-        my_data.order_CHN = 0
-        my_data.receive_US = 0
-        my_data.receive_TW = 0
-        my_data.receive_CHN = 0
-        my_data.analysis = 0
-        my_data.measure1 = 0
-        my_data.measure2 = 0
-        my_data.measure3 = 0
-        my_data.inventory = 0
-        my_data.round_profit = 0
-        my_data.total_profit = 0
-        db.session.commit()
-
     if request.method == 'POST':
         # get input values from inputform 
         order_US = int(request.form['order_US'] or 0)
@@ -660,7 +662,14 @@ def end():
     plt.title("Results")
 
     plt.xticks(x_pos, x)
-    vals = [0, 0.2, 0.4, 0.6, 0.8, 1]
+    v = [-1.0,-0.8,-0.6,-0.4,-0.2,0, 0.2, 0.4, 0.6, 0.8, 1]
+    vals = []
+    for i in range(len(v)):
+        if v[i] > min(values):
+            vals.append(v[i])
+        else: 
+            None
+
     plt.yticks(vals,['{:,.2%}'.format(x) for x in vals])
 
     buf = BytesIO()

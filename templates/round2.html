@@ -218,14 +218,14 @@
 							<div class="row mb-3">
 								<label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity US Productions</label>
 								<div class = "col-7">
-									<input name ="order_US" type="number" class="form-control" id="formGroupExampleInput1" placeholder="insert order quantity" >
+									<input name ="order_US" type="number" min="0" oninput="validity.valid||(value='');" class="form-control" id="formGroupExampleInput1" placeholder="insert order quantity" >
 								</div>
 							</div>
 							
 							<div class="row mb-3">
 								<label for="formGroupExampleInput" class="col-5 col-form-label">Order quantity TW Productions</label>
 								<div class = "col-7">
-									<input name ="order_TW" type="number" class="form-control" id="formGroupExampleInput2" placeholder="insert order quantity" >
+									<input name ="order_TW" type="number" min="0" oninput="validity.valid||(value='');" class="form-control" id="formGroupExampleInput2" placeholder="insert order quantity" >
 								</div>
 							</div>
 							

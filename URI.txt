@@ -1,1 +1,1 @@
-postgres://xjezuiuthzzkax:e66256fb0f46249a929c24c9ad581ff139a192ffa376536e152f948061afdc9f@ec2-54-216-202-161.eu-west-1.compute.amazonaws.com:5432/dbgg781qn34tnm
+postgres://nvrlkfhejwvuoq:db2eb9163aaa958815b4bc1a4a56ff642468fa1f6ea269b99e890945eecd3469@ec2-34-241-19-183.eu-west-1.compute.amazonaws.com:5432/dd9f3k1k00rea8

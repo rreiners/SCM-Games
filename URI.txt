@@ -1,1 +1,1 @@
-postgres://nvrlkfhejwvuoq:db2eb9163aaa958815b4bc1a4a56ff642468fa1f6ea269b99e890945eecd3469@ec2-34-241-19-183.eu-west-1.compute.amazonaws.com:5432/dd9f3k1k00rea8
+postgres://vhhyfvvpcjrjek:0abfa378566678774d591746dfb20da532fed3ef899e7fc931fe1d42dda055b7@ec2-52-215-209-64.eu-west-1.compute.amazonaws.com:5432/dd7s6115v12fv9

@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, render_template_string, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 import base64
+import os
 from io import BytesIO
 import matplotlib
 matplotlib.use('Agg')
@@ -12,7 +13,7 @@ file.close()
 
 app = Flask(__name__)
 app.secret_key = '022fde4f6f0721b9ed817c5ae18edb54307600af64379f5120b5a1553f8bab52'
-app.config['SQLALCHEMY_DATABASE_URI'] = line
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
